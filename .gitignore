@@ -98,3 +98,6 @@ ENV/
 
 # macOS
 *.DS_Store
+
+# params
+params.py
