@@ -3,7 +3,9 @@ import requests
 
 import params
 
-from .constants import WATTBIKE_HUB_LOGIN_URL
+from .constants import (
+    WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL)
+from .exceptions import InvalidSessionException
 
 
 class WattbikeHubClient:
@@ -12,8 +14,7 @@ class WattbikeHubClient:
         self.session_token = None
 
     def _create_session(self):
-        headers = {
-                'Content-Type': 'application/json'}
+        headers = {'Content-Type': 'application/json'}
         session = requests.Session()
         session.headers = headers
         return session
@@ -55,6 +56,27 @@ class WattbikeHubClient:
 
     def logout(self):
         raise NotImplementedError
+
+    def get_session_details(self, session_url):
+        session_id = session_url.split('/')[-1]
+        payload = {
+            'where': {
+                'objectId': session_id}}
+
+        resp = self._post_request(
+            url=WATTBIKE_HUB_RIDESESSION_URL,
+            payload=payload)
+
+        return resp.json()
+
+    def get_user_id(self, session_url):
+        session_details = self.get_session_details(session_url)
+        try:
+            results = session_details['results'][0]
+        except IndexError:
+            raise InvalidSessionException
+        else:
+            return results['user']['objectId']
 
     def get_user(self):
         raise NotImplementedError
