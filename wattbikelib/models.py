@@ -1,6 +1,7 @@
 from .constants import WATTBIKE_HUB_FILES_BASE_URL
 from .exceptions import RideSessionException
 
+
 class RideSessionResponseModel:
     def __init__(self, data):
         self._validate(data)

@@ -1,11 +1,11 @@
 import datetime
 import json
+
 import requests
 
 import params
 
-from .constants import (
-    WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL)
+from .constants import WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL
 from .exceptions import RideSessionException
 from .models import RideSessionResponseModel
 

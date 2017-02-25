@@ -1,11 +1,11 @@
 import datetime
-from unittest import mock, TestCase
+from unittest import TestCase, mock
 
-import params
 import requests
 
-from wattbikelib.client import WattbikeHubClient
+import params
 from wattbikelib import exceptions
+from wattbikelib.client import WattbikeHubClient
 
 
 class WattbikeHubClientTest(TestCase):
@@ -44,6 +44,17 @@ class WattbikeHubClientTest(TestCase):
         sessions = self.client._ride_session_call(payload)
         self.assertEqual(len(sessions), 1)
         session = sessions[0]
+
+    def test_ride_session_call_logged_in(self):
+        self.client.login()
+        payload = {
+            'where': {
+                'objectId': '2yBuOvd92C'}}
+
+        sessions = self.client._ride_session_call(payload)
+        self.assertEqual(len(sessions), 1)
+        session = sessions[0]
+        self.assertEqual(session.get_session_id(), '2yBuOvd92C')
         self.assertEqual(session.get_session_id(), '2yBuOvd92C')
 
     def test_get_session(self):
@@ -61,6 +72,12 @@ class WattbikeHubClientTest(TestCase):
             before=before,
             after=after)
         self.assertEqual(len(sessions), 11)
+        self.assertEqual(sessions[0].get_user_id(), 'u-1756bbba7e2a350')
+
+    def test_get_sessions_without_before_after(self):
+        sessions = self.client.get_sessions(
+            user_id='u-1756bbba7e2a350')
+        self.assertEqual(len(sessions), 15)
         self.assertEqual(sessions[0].get_user_id(), 'u-1756bbba7e2a350')
 
     def test_get_user(self):
