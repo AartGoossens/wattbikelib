@@ -68,20 +68,13 @@ class WattbikeHubClient:
 
         return session_response.sessions
 
-    def get_session_by_url(self, session_url):
+    def get_session(self, session_url):
         session_id = session_url.split('/')[-1]
         payload = {
             'where': {
                 'objectId': session_id}}
         
         return self._ride_session_call(payload)[0]
-
-    def get_user_id(self, session_url):
-        session = self.get_session_by_url(session_url)
-        return session.get_user_id()
-
-    def get_user(self):
-        raise NotImplementedError
 
     def get_sessions(self, user_id, before=None, after=None):
         if not before:
@@ -103,6 +96,9 @@ class WattbikeHubClient:
                         'iso': before.isoformat()}}}}
 
         return self._ride_session_call(payload)
+
+    def get_user(self):
+        raise NotImplementedError
 
     def get_session_data(self):
         raise NotImplementedError
