@@ -1,3 +1,4 @@
+import datetime
 import json
 import requests
 
@@ -5,7 +6,7 @@ import params
 
 from .constants import (
     WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL)
-from .exceptions import InvalidSessionException
+from .exceptions import RideSessionException
 
 
 class WattbikeHubClient:
@@ -27,7 +28,7 @@ class WattbikeHubClient:
             '_ClientVersion': 'js1.6.14',
             '_InstallationId': 'f375bbaa-9514-556a-be57-393849c741eb'}
         if self.session_token:
-            data.update(session_token=self.session_token)
+            data.update({'_SessionToken': self.session_token})
         data.update(payload)
 
         with self._create_session() as session:
@@ -40,7 +41,7 @@ class WattbikeHubClient:
             resp.reason = resp.content
         resp.raise_for_status()
 
-        return resp
+        return resp.json()
 
     def login(self):
         self.session_token = None
@@ -52,37 +53,57 @@ class WattbikeHubClient:
             url=WATTBIKE_HUB_LOGIN_URL,
             payload=payload)
 
-        self.session_token = resp.json()['sessionToken']
+        self.session_token = resp['sessionToken']
 
     def logout(self):
         raise NotImplementedError
 
-    def get_session_details(self, session_url):
-        session_id = session_url.split('/')[-1]
-        payload = {
-            'where': {
-                'objectId': session_id}}
-
+    def _ride_session_call(self, payload):
         resp = self._post_request(
             url=WATTBIKE_HUB_RIDESESSION_URL,
             payload=payload)
 
-        return resp.json()
+        sessions = resp['results']
+        if not len(sessions):
+            raise RideSessionException('No results returned')
+        
+        return sessions
+
+    def get_session_by_url(self, session_url):
+        session_id = session_url.split('/')[-1]
+        payload = {
+            'where': {
+                'objectId': session_id}}
+        
+        return self._ride_session_call(payload)[0]
 
     def get_user_id(self, session_url):
-        session_details = self.get_session_details(session_url)
-        try:
-            results = session_details['results'][0]
-        except IndexError:
-            raise InvalidSessionException
-        else:
-            return results['user']['objectId']
+        session = self.get_session_by_url(session_url)
+        return session['user']['objectId']
 
     def get_user(self):
         raise NotImplementedError
 
-    def get_sessions(self):
-        raise NotImplementedError
+    def get_sessions(self, user_id, before=None, after=None):
+        if not before:
+            before = datetime.datetime.now()
+        if not after:
+            after = datetime.datetime(2000, 1, 1)
+        payload = {
+            'where': {
+                'user': {
+                    '__type': 'Pointer',
+                    'className': '_User',
+                    'objectId': user_id},
+                'startDate': {
+                    '$gt': {
+                        '__type': 'Date',
+                        'iso': after.isoformat()},
+                    '$lt': {
+                        '__type': 'Date',
+                        'iso': before.isoformat()}}}}
+
+        return self._ride_session_call(payload)
 
     def get_session_data(self):
         raise NotImplementedError

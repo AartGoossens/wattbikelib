@@ -1,4 +1,3 @@
-class InvalidSessionException(Exception):
-    def __init__(self):
-        super(InvalidSessionException, self).__init__('session url is not valid')
-
+class RideSessionException(Exception):
+    def __init__(self, message):
+        super(RideSessionException, self).__init__(message)

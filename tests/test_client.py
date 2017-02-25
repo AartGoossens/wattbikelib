@@ -1,3 +1,4 @@
+import datetime
 from unittest import mock, TestCase
 
 import params
@@ -34,26 +35,37 @@ class WattbikeHubClientTest(TestCase):
     def test_logout(self):
         with self.assertRaises(NotImplementedError):
             self.client.logout()
-    
-    def test_get_session_details(self):
+
+    def test_ride_session_call(self):
+        payload = {
+            'where': {
+                'objectId': '2yBuOvd92C'}}
+
+        sessions = self.client._ride_session_call(payload)
+        self.assertEqual(len(sessions), 1)
+        session = sessions[0]
+        self.assertTrue('objectId' in session)
+        self.assertEqual(session['objectId'], '2yBuOvd92C')
+
+    def test_ride_session_call_invalid_session_id(self):
+        payload = {
+            'where': {
+                'objectId': 'invalid_session_id'}}
+
+        with self.assertRaisesRegex(
+                expected_exception=exceptions.RideSessionException,
+                expected_regex='No results returned'):
+            self.client._ride_session_call(payload)
+
+    def test_get_session_by_url(self):
         session_url = 'https://hub.wattbike.com/session/2yBuOvd92C'
-        details = self.client.get_session_details(session_url)
+        session = self.client.get_session_by_url(session_url)
 
-        self.assertTrue('results' in details)
-        self.assertEqual(len(details['results']), 1)
-        results = details['results'][0]
-        self.assertTrue('objectId' in results)
-        self.assertEqual(results['objectId'], '2yBuOvd92C')
-        self.assertTrue('user' in results)
-        self.assertTrue('objectId' in results['user'])
-        self.assertEqual(results['user']['objectId'], 'u-1756bbba7e2a350')
-
-    def test_get_session_details_incorrect_session_url(self):
-        session_url = 'https://hub.wattbike.com/session/non_existing'
-        details = self.client.get_session_details(session_url)
-
-        self.assertTrue('results' in details)
-        self.assertEqual(len(details['results']), 0)
+        self.assertTrue('objectId' in session)
+        self.assertEqual(session['objectId'], '2yBuOvd92C')
+        self.assertTrue('user' in session)
+        self.assertTrue('objectId' in session['user'])
+        self.assertEqual(session['user']['objectId'], 'u-1756bbba7e2a350')
 
     def test_get_user_id(self):
         session_url = 'https://hub.wattbike.com/session/2yBuOvd92C'
@@ -61,18 +73,19 @@ class WattbikeHubClientTest(TestCase):
 
         self.assertEqual(user_id, 'u-1756bbba7e2a350')
 
-    def test_get_user_id_incorrect_session_url(self):
-        session_url = 'https://hub.wattbike.com/session/non_existing'
-        with self.assertRaises(exceptions.InvalidSessionException):
-            user_id = self.client.get_user_id(session_url)
-
     def test_get_user(self):
         with self.assertRaises(NotImplementedError):
             self.client.get_user()
 
     def test_get_sessions(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_sessions()
+        before = datetime.datetime(2017, 1, 1)
+        after = datetime.datetime(2015, 12, 31)
+        sessions = self.client.get_sessions(
+            user_id='u-1756bbba7e2a350',
+            before=before,
+            after=after)
+        self.assertEqual(len(sessions), 11)
+        self.assertEqual(sessions[0]['user']['objectId'], 'u-1756bbba7e2a350')
 
     def test_get_session_data(self):
         with self.assertRaises(NotImplementedError):
