@@ -85,18 +85,6 @@ class WattbikeHubClientTest(TestCase):
         with self.assertRaises(NotImplementedError):
             self.client.get_session_revolutions()
 
-    def test_get_session_tcx_url(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_session_tcx_url()
-
-    def test_get_session_wbs_url(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_session_wbs_url()
-
-    def test_get_session_wbsr_url(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_session_wbsr_url()
-
     def test_get_user_preferences(self):
         with self.assertRaises(NotImplementedError):
             self.client.get_user_preferences()

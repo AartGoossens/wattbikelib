@@ -110,15 +110,6 @@ class WattbikeHubClient:
     def get_session_revolutions(self):
         raise NotImplementedError
 
-    def get_session_tcx_url(self):
-        raise NotImplementedError
-
-    def get_session_wbs_url(self):
-        raise NotImplementedError
-
-    def get_session_wbsr_url(self):
-        raise NotImplementedError
-
     def get_user_preferences(self):
         raise NotImplementedError
 
