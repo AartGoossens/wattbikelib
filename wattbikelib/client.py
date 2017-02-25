@@ -7,7 +7,9 @@ import params
 
 from .constants import WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL
 from .exceptions import RideSessionException
-from .models import LoginResponseModel, RideSessionResponseModel
+from .models import (LoginResponseModel, RideSessionResponseModel,
+                     WattbikeDataFrame)
+from .tools import build_hub_files_url, flatten
 
 
 class WattbikeHubClient:
@@ -43,6 +45,11 @@ class WattbikeHubClient:
         resp.raise_for_status()
 
         return resp.json()
+
+    def _get_request_json(self, url):
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.json()
 
     def login(self):
         self.session_token = None
@@ -113,3 +120,15 @@ class WattbikeHubClient:
 
     def get_user_performance_state(self):
         raise NotImplementedError
+
+    def get_session_dataframe(self, session_id, user_id=None):
+        if not user_id:
+            user_id = self.user_id
+        url = build_hub_files_url(user_id, session_id)
+        wbs = self._get_request_json(url)
+
+        wdf = WattbikeDataFrame(
+            [flatten(rev) for lap in wbs['laps'] for rev in lap['data']])
+        wdf.columns_to_numeric()
+
+        return wdf

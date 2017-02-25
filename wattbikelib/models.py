@@ -1,5 +1,8 @@
+import pandas as pd
+
 from .constants import WATTBIKE_HUB_FILES_BASE_URL
 from .exceptions import RideSessionException
+from .tools import build_hub_files_url
 
 
 class RideSessionResponseModel:
@@ -21,7 +24,7 @@ class RideSessionModel(dict):
         return self['objectId']
     
     def _build_url(self, extension):
-        return WATTBIKE_HUB_FILES_BASE_URL.format(
+        return build_hub_files_url(
             user_id=self.get_user_id(),
             session_id=self.get_session_id(),
             extension=extension)
@@ -42,3 +45,21 @@ class LoginResponseModel(dict):
 
     def get_session_token(self):
         return self['sessionToken']
+
+
+class WattbikeDataFrame(pd.DataFrame):
+    def __init__(self, *args, **kwargs):
+        super(WattbikeDataFrame, self).__init__(*args, **kwargs)
+        self.columns_to_numeric()
+
+    @property
+    def _constructor(self):
+        return WattbikeDataFrame
+
+    def plot_polar_view(self):
+        raise NotImplementedError
+
+    def columns_to_numeric(self):
+        numeric_columns = set(self.columns) - set(['polar_force'])
+        for col in numeric_columns:
+            self.ix[:, col] = pd.to_numeric(self.ix[:, col])

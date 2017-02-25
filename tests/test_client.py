@@ -100,3 +100,11 @@ class WattbikeHubClientTest(TestCase):
     def test_get_user_performance_state(self):
         with self.assertRaises(NotImplementedError):
             self.client.get_user_performance_state()
+
+    def test_get_session_dataframe(self):
+        session_id = '2yBuOvd92C'
+        self.client.login()
+        wdf = self.client.get_session_dataframe(session_id)
+        self.assertEqual(len(wdf), 5480)
+        self.assertEqual(wdf.power.dtype, float)
+        self.assertEqual(wdf.polar_force.dtype, object)

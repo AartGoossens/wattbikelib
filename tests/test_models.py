@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+import pandas as pd
 import requests
 
 from wattbikelib import exceptions, models
@@ -89,3 +90,47 @@ class LoginResponseModelTest(TestCase):
     def test_get_session_token(self):
         session_token = self.login_response.get_session_token()
         self.assertEqual(session_token, 'r:3cde15b3280d1f55d6cf3c4733f773ae')
+
+
+class WattbikeDataFrameTest(TestCase):
+    def setUp(self):
+        self.data = [{
+            'speed': '30.7822',
+            'polar_force': '86,72,57,48,40,33,31,30,30,31,31,32,33,35,41,48,57,69,81,92,103,110,121,131,144,158,168,178,189,198,209,220,229,237,240,244,248,252,255,256,257,259,259,259,256,255,248,242,230,220,208,194,180,163,148,129,113,98,83,73,61,53,46,42,38,36,35,33,33,37,42,52,63,76,86,94,105,113,124,131,139,143,148,153,157,162,164,168,171,175,177,177,177,177,178,178,180,178,177,173,171,166,160,153,143,131,120,107,93,83,72,67,62,62,59',
+            'polar_lcnt': 61,
+            'polar_cnt': 115,
+            'distance': '9.8332',
+            'power': '121.4584',
+            'time': '1.1500',
+            'force': '130.7665',
+            'balance': '58.5158',
+            'heartrate': '100.0000',
+            'cadence': '52.1739'}]
+        self.wdf = models.WattbikeDataFrame(self.data)
+
+    def test_init(self):
+        wdf = models.WattbikeDataFrame(self.data)
+        self.assertIsInstance(wdf, models.WattbikeDataFrame)
+        self.assertIsInstance(wdf, pd.DataFrame)
+    
+    def test_constructor(self):
+        # Random command to force calling WattbikeDataFrame._constructor
+        wdf = self.wdf[['power', 'cadence']]
+        self.assertIsInstance(wdf, models.WattbikeDataFrame)
+
+    def test_columns_to_numeric(self):
+        self.assertEqual(self.wdf.balance.dtype.name, 'float64')
+        self.assertEqual(self.wdf.cadence.dtype.name, 'float64')
+        self.assertEqual(self.wdf.distance.dtype.name, 'float64')
+        self.assertEqual(self.wdf.force.dtype.name, 'float64')
+        self.assertEqual(self.wdf.heartrate.dtype.name, 'float64')
+        self.assertEqual(self.wdf.polar_cnt.dtype.name, 'int64')
+        self.assertEqual(self.wdf.polar_lcnt.dtype.name, 'int64')
+        self.assertEqual(self.wdf.power.dtype.name, 'float64')
+        self.assertEqual(self.wdf.speed.dtype.name, 'float64')
+        self.assertEqual(self.wdf.time.dtype.name, 'float64')
+        self.assertEqual(self.wdf.polar_force.dtype.name, 'object')
+
+    def test_plot_polar_view(self):
+        with self.assertRaises(NotImplementedError):
+            self.wdf.plot_polar_view()
