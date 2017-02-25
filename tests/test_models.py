@@ -68,3 +68,24 @@ class RideSessionModelTest(TestCase):
 
         response = requests.head(url, headers={'Connection':'close'})
         self.assertTrue(response.ok)
+
+
+class LoginResponseModelTest(TestCase):
+    def setUp(self):
+        session_data = {
+            'objectId': 'u-1756bbba7e2a350',
+            'sessionToken': 'r:3cde15b3280d1f55d6cf3c4733f773ae'}
+        self.login_response = models.LoginResponseModel(session_data)
+
+    def test_init(self):
+        session = models.LoginResponseModel({})
+        self.assertIsInstance(session, models.LoginResponseModel)
+        self.assertIsInstance(session, dict)
+
+    def test_get_user_id(self):
+        user_id = self.login_response.get_user_id()
+        self.assertEqual(user_id, 'u-1756bbba7e2a350')
+
+    def test_get_session_token(self):
+        session_token = self.login_response.get_session_token()
+        self.assertEqual(session_token, 'r:3cde15b3280d1f55d6cf3c4733f773ae')

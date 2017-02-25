@@ -7,13 +7,13 @@ import params
 
 from .constants import WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL
 from .exceptions import RideSessionException
-from .models import RideSessionResponseModel
+from .models import LoginResponseModel, RideSessionResponseModel
 
 
 class WattbikeHubClient:
     def __init__(self):
-        # self._session_init()
         self.session_token = None
+        self.user_id = None
 
     def _create_session(self):
         headers = {'Content-Type': 'application/json'}
@@ -54,7 +54,9 @@ class WattbikeHubClient:
             url=WATTBIKE_HUB_LOGIN_URL,
             payload=payload)
 
-        self.session_token = data['sessionToken']
+        login_response = LoginResponseModel(data)
+        self.session_token = login_response.get_session_token()
+        self.user_id = login_response.get_user_id()
 
     def logout(self):
         raise NotImplementedError

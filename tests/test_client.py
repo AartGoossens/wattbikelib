@@ -21,6 +21,7 @@ class WattbikeHubClientTest(TestCase):
         self.client.login()
 
         self.assertRegex(self.client.session_token, 'r:[a-z0-9]{32}')
+        self.assertRegex(self.client.user_id, 'u-[a-z0-9]{15}')
 
     def test_login_incorrect_credentials(self):
         correct_password = params.WATTBIKE_HUB_PASSWORD

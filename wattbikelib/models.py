@@ -14,9 +14,6 @@ class RideSessionResponseModel:
 
 
 class RideSessionModel(dict):
-    def __init__(self, data):
-        super(RideSessionModel, self).__init__(data)
-
     def get_user_id(self):
         return self['user']['objectId']
     
@@ -37,3 +34,11 @@ class RideSessionModel(dict):
 
     def get_wbsr_url(self):
         return self._build_url('wbsr')
+
+
+class LoginResponseModel(dict):
+    def get_user_id(self):
+        return self['objectId']
+
+    def get_session_token(self):
+        return self['sessionToken']
