@@ -47,16 +47,6 @@ class WattbikeHubClientTest(TestCase):
         self.assertTrue('objectId' in session)
         self.assertEqual(session['objectId'], '2yBuOvd92C')
 
-    def test_ride_session_call_invalid_session_id(self):
-        payload = {
-            'where': {
-                'objectId': 'invalid_session_id'}}
-
-        with self.assertRaisesRegex(
-                expected_exception=exceptions.RideSessionException,
-                expected_regex='No results returned'):
-            self.client._ride_session_call(payload)
-
     def test_get_session_by_url(self):
         session_url = 'https://hub.wattbike.com/session/2yBuOvd92C'
         session = self.client.get_session_by_url(session_url)
