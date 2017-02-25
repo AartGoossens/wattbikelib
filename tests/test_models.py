@@ -107,6 +107,7 @@ class WattbikeDataFrameTest(TestCase):
             'heartrate': '100.0000',
             'cadence': '52.1739'}]
         self.wdf = models.WattbikeDataFrame(self.data)
+        self.wdf.columns_to_numeric()
 
     def test_init(self):
         wdf = models.WattbikeDataFrame(self.data)
@@ -119,17 +120,15 @@ class WattbikeDataFrameTest(TestCase):
         self.assertIsInstance(wdf, models.WattbikeDataFrame)
 
     def test_columns_to_numeric(self):
-        self.assertEqual(self.wdf.balance.dtype.name, 'float64')
-        self.assertEqual(self.wdf.cadence.dtype.name, 'float64')
-        self.assertEqual(self.wdf.distance.dtype.name, 'float64')
-        self.assertEqual(self.wdf.force.dtype.name, 'float64')
-        self.assertEqual(self.wdf.heartrate.dtype.name, 'float64')
-        self.assertEqual(self.wdf.polar_cnt.dtype.name, 'int64')
-        self.assertEqual(self.wdf.polar_lcnt.dtype.name, 'int64')
-        self.assertEqual(self.wdf.power.dtype.name, 'float64')
-        self.assertEqual(self.wdf.speed.dtype.name, 'float64')
-        self.assertEqual(self.wdf.time.dtype.name, 'float64')
-        self.assertEqual(self.wdf.polar_force.dtype.name, 'object')
+        wdf = models.WattbikeDataFrame(self.data)
+        self.assertEqual(wdf.balance.dtype.name, 'object')
+        self.assertEqual(wdf.polar_cnt.dtype.name, 'int64')
+        self.assertEqual(wdf.polar_force.dtype.name, 'object')
+
+        wdf.columns_to_numeric()
+        self.assertEqual(wdf.balance.dtype.name, 'float64')
+        self.assertEqual(wdf.polar_cnt.dtype.name, 'int64')
+        self.assertEqual(wdf.polar_force.dtype.name, 'object')
 
     def test_plot_polar_view(self):
         with self.assertRaises(NotImplementedError):

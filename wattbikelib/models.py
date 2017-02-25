@@ -48,10 +48,6 @@ class LoginResponseModel(dict):
 
 
 class WattbikeDataFrame(pd.DataFrame):
-    def __init__(self, *args, **kwargs):
-        super(WattbikeDataFrame, self).__init__(*args, **kwargs)
-        self.columns_to_numeric()
-
     @property
     def _constructor(self):
         return WattbikeDataFrame
@@ -60,6 +56,8 @@ class WattbikeDataFrame(pd.DataFrame):
         raise NotImplementedError
 
     def columns_to_numeric(self):
-        numeric_columns = set(self.columns) - set(['polar_force'])
-        for col in numeric_columns:
-            self.ix[:, col] = pd.to_numeric(self.ix[:, col])
+        for col in self.columns:
+            try:
+                self.ix[:, col] = pd.to_numeric(self.ix[:, col])
+            except ValueError:
+                continue
