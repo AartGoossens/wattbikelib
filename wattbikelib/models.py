@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -67,7 +68,7 @@ class WattbikeDataFrame(pd.DataFrame):
 
     def add_polar_forces(self):
         _df = pd.DataFrame()
-        new_angles = np.arange(0.0, 360.0)
+        new_angles = np.arange(0.0, 361.0)
         column_labels = ['_{}'.format(int(i)) for i in new_angles]
 
         if not '_0' in self.columns:
@@ -99,3 +100,20 @@ class WattbikeDataFrame(pd.DataFrame):
             self[angle] = _df[angle]
 
         return self
+    
+    def polar_plot(self):
+        ax = plt.subplot(111, projection='polar')
+
+        polar_force_columns = ['_{}'.format(i) for i in range(361)]
+        mean_polar_forces = self[polar_force_columns].mean()
+        polar_angles = np.arange(90, 451) / (180 / np.pi)
+        ax.plot(polar_angles, mean_polar_forces)
+
+        xticks_num = 8
+        xticks = np.arange(0, xticks_num, 2 * np.pi / xticks_num)
+        ax.set_xticks(xticks)
+        rad_to_label = lambda i: '{}°'.format(int(i / (2 * np.pi) * 360 - 90) % 180)
+        ax.set_xticklabels([rad_to_label(i) for i in xticks])
+        ax.set_yticklabels([])
+
+        return ax

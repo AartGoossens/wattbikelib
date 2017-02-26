@@ -159,3 +159,8 @@ class WattbikeDataFrameTest(TestCase):
         self.assertTrue('_359' in self.wdf.columns)
         self.assertIsInstance(self.wdf.loc[0, '_0'], float)
         self.assertEqual(self.wdf.loc[0, '_0'], 0.65648854961832059)
+
+    def test_polar_plot(self):
+        self.wdf.add_polar_forces()
+        ax = self.wdf.polar_plot()
+        self.assertTrue(ax.has_data)
