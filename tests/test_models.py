@@ -105,7 +105,16 @@ class WattbikeDataFrameTest(TestCase):
             'force': '130.7665',
             'balance': '58.5158',
             'heartrate': '100.0000',
-            'cadence': '52.1739'}]
+            'cadence': '52.1739'},
+            {'speed': '30.7822',
+            'distance': '9.8332',
+            'power': '121.4584',
+            'time': '1.1500',
+            'force': '130.7665',
+            'balance': '58.5158',
+            'heartrate': '100.0000',
+            'cadence': '52.1739'}
+            ]
         self.wdf = models.WattbikeDataFrame(self.data)
         self.wdf.columns_to_numeric()
 
@@ -122,14 +131,31 @@ class WattbikeDataFrameTest(TestCase):
     def test_columns_to_numeric(self):
         wdf = models.WattbikeDataFrame(self.data)
         self.assertEqual(wdf.balance.dtype.name, 'object')
-        self.assertEqual(wdf.polar_cnt.dtype.name, 'int64')
+        self.assertEqual(wdf.polar_cnt.dtype.name, 'float64')
         self.assertEqual(wdf.polar_force.dtype.name, 'object')
 
-        wdf.columns_to_numeric()
+        wdf_2 = wdf.columns_to_numeric()
         self.assertEqual(wdf.balance.dtype.name, 'float64')
-        self.assertEqual(wdf.polar_cnt.dtype.name, 'int64')
+        self.assertEqual(wdf.polar_cnt.dtype.name, 'float64')
         self.assertEqual(wdf.polar_force.dtype.name, 'object')
+        self.assertIsNotNone(wdf_2)
 
     def test_plot_polar_view(self):
         with self.assertRaises(NotImplementedError):
             self.wdf.plot_polar_view()
+
+    def test_add_polar_forces(self):
+        wdf_2 = self.wdf.add_polar_forces()
+        self.assertIsNotNone(wdf_2)
+        self.assertTrue('_0' in self.wdf.columns)
+        self.assertTrue('_359' in self.wdf.columns)
+        self.assertIsInstance(self.wdf.loc[0, '_0'], float)
+        self.assertEqual(self.wdf.loc[0, '_0'], 0.65648854961832059)
+
+    def test_add_polar_forces_columns_already_exist(self):
+        self.wdf.add_polar_forces()
+        wdf_2 = self.wdf.add_polar_forces()
+        self.assertTrue('_0' in self.wdf.columns)
+        self.assertTrue('_359' in self.wdf.columns)
+        self.assertIsInstance(self.wdf.loc[0, '_0'], float)
+        self.assertEqual(self.wdf.loc[0, '_0'], 0.65648854961832059)

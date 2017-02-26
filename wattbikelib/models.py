@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 from .constants import WATTBIKE_HUB_FILES_BASE_URL
@@ -61,3 +62,40 @@ class WattbikeDataFrame(pd.DataFrame):
                 self.ix[:, col] = pd.to_numeric(self.ix[:, col])
             except ValueError:
                 continue
+
+        return self
+
+    def add_polar_forces(self):
+        _df = pd.DataFrame()
+        new_angles = np.arange(0.0, 360.0)
+        column_labels = ['_{}'.format(int(i)) for i in new_angles]
+
+        if not '_0' in self.columns:
+            for label in column_labels:
+                self[label] = np.nan
+
+        for index, pf in self.polar_force.iteritems():
+            if not isinstance(pf, str):
+                continue
+
+            forces = [int(i) for i in pf.split(',')]
+            forces = np.array(forces + [forces[0]])
+            forces = forces/np.median(forces)
+
+            angle_dx = 360.0 / (len(forces)-1)
+
+            forces_interp = np.interp(
+                x=new_angles,
+                xp=np.arange(0, 360.01, angle_dx),
+                fp=forces)
+
+            _df[index] = forces_interp
+
+        _df['angle'] = column_labels
+        _df.set_index('angle', inplace=True)
+        _df = _df.transpose()
+
+        for angle in column_labels:
+            self[angle] = _df[angle]
+
+        return self

@@ -78,7 +78,6 @@ class WattbikeHubClientTest(TestCase):
     def test_get_sessions_without_before_after(self):
         sessions = self.client.get_sessions(
             user_id='u-1756bbba7e2a350')
-        self.assertEqual(len(sessions), 15)
         self.assertEqual(sessions[0].get_user_id(), 'u-1756bbba7e2a350')
 
     def test_get_user(self):
