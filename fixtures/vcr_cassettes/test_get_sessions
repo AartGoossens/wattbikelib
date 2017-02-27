@@ -1,0 +1,223 @@
+interactions:
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "where": {"user": {"__type": "Pointer",
+      "className": "_User", "objectId": "u-1756bbba7e2a350"}, "startDate": {"$gt":
+      {"__type": "Date", "iso": "2015-12-31T00:00:00"}, "$lt": {"__type": "Date",
+      "iso": "2017-01-01T00:00:00"}}}}'
+    headers:
+      Content-Length: ['422']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/RideSession
+  response:
+    body: {string: '{"results": [{"objectId": "df9ed1e2d2f3d147d357071e3004c1b0",
+        "comments": null, "createdAt": "2016-07-01T16:03:07.000Z", "title": "Just
+        Ride: di 03 mei 2016", "startDate": {"__type": "Date", "iso": "2016-05-03T19:27:07.000Z"},
+        "notes": null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1
+        like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E238", "dataVersion":
+        "1.3", "updatedAt": "2016-07-01T16:03:07.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-df9ed1e2d2f3d147d357071e3004c1b0"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24361", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": 52.3852, "longitude":
+        4.86981, "altitude": -1}, "file": null, "state": "ready", "processingTime":
+        1467388987000, "sessionData": {"wbs": {"name": "353-df9ed1e2d2f3d147d357071e3004c1b0.wbs"},
+        "wbsr": {"name": "353-df9ed1e2d2f3d147d357071e3004c1b0.wbsr"}, "tcx": {"name":
+        "353-strava-df9ed1e2d2f3d147d357071e3004c1b0.tcx"}}, "laps": [4969264], "ACL":
+        {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}, "*": {"read": true}}}, {"objectId": "4a64dce9c47a966a6ddeafa3bdd1ea16",
+        "comments": null, "createdAt": "2016-07-01T16:04:01.000Z", "title": "Just
+        Ride: di 03 mei 2016", "startDate": {"__type": "Date", "iso": "2016-05-03T19:27:07.000Z"},
+        "notes": null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1
+        like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E238", "dataVersion":
+        "1.3", "updatedAt": "2016-07-01T16:04:01.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-4a64dce9c47a966a6ddeafa3bdd1ea16"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24361", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": 52.3852, "longitude":
+        4.86981, "altitude": -1}, "file": null, "state": "ready", "processingTime":
+        1467389041000, "sessionData": {"wbs": {"name": "353-4a64dce9c47a966a6ddeafa3bdd1ea16.wbs"},
+        "wbsr": {"name": "353-4a64dce9c47a966a6ddeafa3bdd1ea16.wbsr"}, "tcx": {"name":
+        "353-strava-4a64dce9c47a966a6ddeafa3bdd1ea16.tcx"}}, "laps": [4969264], "ACL":
+        {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}, "*": {"read": true}}}, {"objectId": "572f1cd59e1b791634868a56a33e491c",
+        "comments": null, "createdAt": "2016-03-31T17:01:53.000Z", "title": "Just
+        Ride: do 31 mrt. 2016", "startDate": {"__type": "Date", "iso": "2016-03-31T18:01:51.000Z"},
+        "notes": null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3
+        like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E234", "dataVersion":
+        "1.3", "updatedAt": "2016-03-31T17:01:53.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-572f1cd59e1b791634868a56a33e491c"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24534", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": null, "longitude":
+        null, "altitude": null}, "file": null, "state": "ready", "processingTime":
+        1459443713000, "sessionData": {"wbs": {"name": "353-572f1cd59e1b791634868a56a33e491c.wbs"},
+        "wbsr": {"name": "353-572f1cd59e1b791634868a56a33e491c.wbsr"}, "tcx": {"name":
+        "353-strava-572f1cd59e1b791634868a56a33e491c.tcx"}}, "laps": [154050], "ACL":
+        {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}, "*": {"read": true}}}, {"objectId": "ee6639cbe5fd1d7aa8de4d1e4c8a1415",
+        "comments": null, "createdAt": "2016-03-31T17:26:53.000Z", "title": "Just
+        Ride: do 31 mrt. 2016", "startDate": {"__type": "Date", "iso": "2016-03-31T18:25:49.000Z"},
+        "notes": null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3
+        like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E234", "dataVersion":
+        "1.3", "updatedAt": "2016-03-31T17:26:53.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-ee6639cbe5fd1d7aa8de4d1e4c8a1415"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24534", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": null, "longitude":
+        null, "altitude": null}, "file": null, "state": "ready", "processingTime":
+        1459445213000, "sessionData": {"wbs": {"name": "353-ee6639cbe5fd1d7aa8de4d1e4c8a1415.wbs"},
+        "wbsr": {"name": "353-ee6639cbe5fd1d7aa8de4d1e4c8a1415.wbsr"}, "tcx": {"name":
+        "353-strava-ee6639cbe5fd1d7aa8de4d1e4c8a1415.tcx"}}, "laps": [1309670], "ACL":
+        {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}, "*": {"read": true}}}, {"objectId": "e574b159cf602c8e621033156e7e2361",
+        "comments": null, "createdAt": "2016-03-31T17:48:15.000Z", "title": "Just
+        Ride: do 31 mrt. 2016", "startDate": {"__type": "Date", "iso": "2016-03-31T18:48:08.000Z"},
+        "notes": null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3
+        like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E234", "dataVersion":
+        "1.3", "updatedAt": "2016-03-31T17:48:15.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-e574b159cf602c8e621033156e7e2361"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24534", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": 52.38501, "longitude":
+        4.86996, "altitude": -1}, "file": null, "state": "ready", "processingTime":
+        1459446495000, "sessionData": {"wbs": {"name": "353-e574b159cf602c8e621033156e7e2361.wbs"},
+        "wbsr": {"name": "353-e574b159cf602c8e621033156e7e2361.wbsr"}, "tcx": {"name":
+        "353-strava-e574b159cf602c8e621033156e7e2361.tcx"}}, "laps": [680710, 1030600],
+        "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}}, {"objectId": "1be0dce5de2afdbc5d1903d10e0bd51f",
+        "comments": null, "createdAt": "2016-03-31T18:20:19.000Z", "title": "Just
+        Ride: do 31 mrt. 2016", "startDate": {"__type": "Date", "iso": "2016-03-31T19:20:02.000Z"},
+        "notes": null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3
+        like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E234", "dataVersion":
+        "1.3", "updatedAt": "2016-03-31T18:20:19.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-1be0dce5de2afdbc5d1903d10e0bd51f"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24534", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": 52.38505, "longitude":
+        4.86996, "altitude": -1}, "file": null, "state": "ready", "processingTime":
+        1459448419000, "sessionData": {"wbs": {"name": "353-1be0dce5de2afdbc5d1903d10e0bd51f.wbs"},
+        "wbsr": {"name": "353-1be0dce5de2afdbc5d1903d10e0bd51f.wbsr"}, "tcx": {"name":
+        "353-strava-1be0dce5de2afdbc5d1903d10e0bd51f.tcx"}}, "laps": [235310, 1880280],
+        "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}}, {"objectId": "2260d7e68faa399a8d1ab42a1e51bf5c",
+        "comments": null, "createdAt": "2016-04-12T17:31:20.000Z", "title": "Just
+        Ride: di 12 apr. 2016", "startDate": {"__type": "Date", "iso": "2016-04-12T18:30:55.000Z"},
+        "notes": null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1
+        like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E238", "dataVersion":
+        "1.3", "updatedAt": "2016-04-12T17:31:20.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-2260d7e68faa399a8d1ab42a1e51bf5c"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24534", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": 52.38503, "longitude":
+        4.8698, "altitude": null}, "file": null, "state": "ready", "processingTime":
+        1460482280000, "sessionData": {"wbs": {"name": "353-2260d7e68faa399a8d1ab42a1e51bf5c.wbs"},
+        "wbsr": {"name": "353-2260d7e68faa399a8d1ab42a1e51bf5c.wbsr"}, "tcx": {"name":
+        "353-strava-2260d7e68faa399a8d1ab42a1e51bf5c.tcx"}}, "shareData": {"strava":
+        {"id": "596294267", "uploadId": "543310239"}}, "laps": [1881321], "ACL": {"role:Admin":
+        {"read": true, "write": true}, "u-1756bbba7e2a350": {"read": true, "write":
+        true}, "*": {"read": true}}}, {"objectId": "b5358756ed5bd72b1ae62fd181a52906",
+        "comments": null, "createdAt": "2016-04-19T17:02:46.000Z", "title": "Just
+        Ride: di 19 apr. 2016", "startDate": {"__type": "Date", "iso": "2016-04-19T18:02:44.000Z"},
+        "notes": null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1
+        like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E238", "dataVersion":
+        "1.3", "updatedAt": "2016-04-19T17:02:46.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-b5358756ed5bd72b1ae62fd181a52906"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24309", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": 52.38508, "longitude":
+        4.86974, "altitude": null}, "file": null, "state": "ready", "processingTime":
+        1461085366000, "sessionData": {"wbs": {"name": "353-b5358756ed5bd72b1ae62fd181a52906.wbs"},
+        "wbsr": {"name": "353-b5358756ed5bd72b1ae62fd181a52906.wbsr"}, "tcx": {"name":
+        "353-strava-b5358756ed5bd72b1ae62fd181a52906.tcx"}}, "shareData": {"strava":
+        {"id": "603537522"}}, "laps": [11920], "ACL": {"role:Admin": {"read": true,
+        "write": true}, "u-1756bbba7e2a350": {"read": true, "write": true}, "*": {"read":
+        true}}}, {"objectId": "f73e08198f18ba486342e7cbf6a81b0c", "comments": null,
+        "createdAt": "2016-04-19T16:59:42.000Z", "title": "Just Ride: di 19 apr. 2016",
+        "startDate": {"__type": "Date", "iso": "2016-04-19T17:59:38.000Z"}, "notes":
+        null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1 like Mac
+        OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E238", "dataVersion":
+        "1.3", "updatedAt": "2016-04-19T16:59:42.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-f73e08198f18ba486342e7cbf6a81b0c"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24309", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": 52.3851, "longitude":
+        4.86971, "altitude": -1}, "file": null, "state": "ready", "processingTime":
+        1461085182000, "sessionData": {"wbs": {"name": "353-f73e08198f18ba486342e7cbf6a81b0c.wbs"},
+        "wbsr": {"name": "353-f73e08198f18ba486342e7cbf6a81b0c.wbsr"}, "tcx": {"name":
+        "353-strava-f73e08198f18ba486342e7cbf6a81b0c.tcx"}}, "shareData": {"strava":
+        {"id": "603533281"}}, "laps": [195571], "ACL": {"role:Admin": {"read": true,
+        "write": true}, "u-1756bbba7e2a350": {"read": true, "write": true}, "*": {"read":
+        true}}}, {"objectId": "9995d90c21a5532dad4aff99e5c32710", "comments": null,
+        "createdAt": "2016-04-26T19:31:51.000Z", "title": "Just Ride: di 26 apr. 2016",
+        "startDate": {"__type": "Date", "iso": "2016-04-26T19:24:31.000Z"}, "notes":
+        null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1 like Mac
+        OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E238", "dataVersion":
+        "1.3", "updatedAt": "2016-04-26T19:31:51.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-9995d90c21a5532dad4aff99e5c32710"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24309", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": 52.38506, "longitude":
+        4.86964, "altitude": -1}, "file": null, "state": "ready", "processingTime":
+        1461699111000, "sessionData": {"wbs": {"name": "353-9995d90c21a5532dad4aff99e5c32710.wbs"},
+        "wbsr": {"name": "353-9995d90c21a5532dad4aff99e5c32710.wbsr"}, "tcx": {"name":
+        "353-strava-9995d90c21a5532dad4aff99e5c32710.tcx"}}, "laps": [5367080], "ACL":
+        {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}, "*": {"read": true}}}, {"objectId": "fd63c5129584555579663e568f9ef406",
+        "comments": null, "createdAt": "2016-04-26T19:31:56.000Z", "title": "Just
+        Ride: di 19 apr. 2016", "startDate": {"__type": "Date", "iso": "2016-04-19T19:21:05.000Z"},
+        "notes": null, "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1
+        like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E238", "dataVersion":
+        "1.3", "updatedAt": "2016-04-26T19:31:56.000Z", "isPrivate": false, "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "rss-fd63c5129584555579663e568f9ef406"},
+        "wattbikeDevice": {"commId": 2, "serialNumber": "24309", "firmwareVersion":
+        "1.23", "crankLength": 0.17}, "location": {"latitude": 52.38509, "longitude":
+        4.86986, "altitude": -1}, "file": null, "state": "ready", "processingTime":
+        1461699116000, "sessionData": {"wbs": {"name": "353-fd63c5129584555579663e568f9ef406.wbs"},
+        "wbsr": {"name": "353-fd63c5129584555579663e568f9ef406.wbsr"}, "tcx": {"name":
+        "353-strava-fd63c5129584555579663e568f9ef406.tcx"}}, "laps": [123010, 494550,
+        1183800, 2088570, 2326780, 2925970, 3347651, 3646941, 4651671], "ACL": {"role:Admin":
+        {"read": true, "write": true}, "u-1756bbba7e2a350": {"read": true, "write":
+        true}, "*": {"read": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['14382']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Mon, 27 Feb 2017 20:34:18 GMT']
+      ETag: [W/"382e-6u8YOg/ja9F+0DQrAgcb9w"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+version: 1

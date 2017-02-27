@@ -1,0 +1,43 @@
+interactions:
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "username": "USERNAME", "password":
+      "PASSWORD"}'
+    headers:
+      Content-Length: ['252']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/login
+  response:
+    body: {string: '{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-02-24T22:16:15.738Z", "vanityName": "aart.goossens", "username":
+        "USERNAME", "email": "EMAIL", "firstName": "Aart", "lastName": "Goossens",
+        "displayName": "Aart Goossens", "gender": "m", "birthDate": {"__type": "Date",
+        "iso": "1989-01-08T00:00:00.000Z"}, "country": null, "profileImage": null,
+        "additionalNotificationEmail": null, "emailVerified": true, "authData": {"strava":
+        {"id": "2495424", "access_token": "5e0b00295634bc4ad1e20418a7330eda455698e9"}},
+        "performanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "preferences": {"__type": "Pointer", "className":
+        "UserPreferences", "objectId": "up-1756bbba7e2a350"}, "statistics": {"__type":
+        "Pointer", "className": "UserStatistics", "objectId": "us-1756bbba7e2a350"},
+        "following": {"__type": "Relation", "className": "_User"}, "ACL": {"role:Admin":
+        {"read": true, "write": true}, "u-1756bbba7e2a350": {"read": true, "write":
+        true}, "*": {"read": true}}, "sessionToken": "r:abbcdefghikjlmnopqrstuvwxyz012345"}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1050']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Mon, 27 Feb 2017 20:34:19 GMT']
+      ETag: [W/"41a-jbfkn5pyVEBlznui7ZR1Mw"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+version: 1

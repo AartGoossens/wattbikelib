@@ -4,6 +4,7 @@ from unittest import TestCase, mock
 import requests
 
 import params
+from vcr_setup import custom_vcr
 from wattbikelib import exceptions
 from wattbikelib.client import WattbikeHubClient
 
@@ -16,6 +17,7 @@ class WattbikeHubClientTest(TestCase):
         self.assertIsInstance(self.client, WattbikeHubClient)
         self.assertIsNone(self.client.session_token)
 
+    @custom_vcr.use_cassette()
     def test_login(self):
         self.assertIsNone(self.client.session_token)
         self.client.login()
@@ -23,6 +25,7 @@ class WattbikeHubClientTest(TestCase):
         self.assertRegex(self.client.session_token, 'r:[a-z0-9]{32}')
         self.assertRegex(self.client.user_id, 'u-[a-z0-9]{15}')
 
+    @custom_vcr.use_cassette()
     def test_login_incorrect_credentials(self):
         correct_password = params.WATTBIKE_HUB_PASSWORD
         params.WATTBIKE_HUB_PASSWORD = 'incorrect_password'
@@ -33,10 +36,12 @@ class WattbikeHubClientTest(TestCase):
 
         params.WATTBIKE_HUB_PASSWORD = correct_password
 
+    @custom_vcr.use_cassette()
     def test_logout(self):
         with self.assertRaises(NotImplementedError):
             self.client.logout()
 
+    @custom_vcr.use_cassette()
     def test_ride_session_call(self):
         payload = {
             'where': {
@@ -46,6 +51,7 @@ class WattbikeHubClientTest(TestCase):
         self.assertEqual(len(sessions), 1)
         session = sessions[0]
 
+    @custom_vcr.use_cassette()
     def test_ride_session_call_logged_in(self):
         self.client.login()
         payload = {
@@ -58,6 +64,7 @@ class WattbikeHubClientTest(TestCase):
         self.assertEqual(session.get_session_id(), '2yBuOvd92C')
         self.assertEqual(session.get_session_id(), '2yBuOvd92C')
 
+    @custom_vcr.use_cassette()
     def test_get_session(self):
         session_url = 'https://hub.wattbike.com/session/2yBuOvd92C'
         session = self.client.get_session(session_url)
@@ -65,6 +72,7 @@ class WattbikeHubClientTest(TestCase):
         self.assertEqual(session.get_session_id(), '2yBuOvd92C')
         self.assertEqual(session.get_user_id(), 'u-1756bbba7e2a350')
 
+    @custom_vcr.use_cassette()
     def test_get_sessions(self):
         before = datetime.datetime(2017, 1, 1)
         after = datetime.datetime(2015, 12, 31)
@@ -75,31 +83,38 @@ class WattbikeHubClientTest(TestCase):
         self.assertEqual(len(sessions), 11)
         self.assertEqual(sessions[0].get_user_id(), 'u-1756bbba7e2a350')
 
+    @custom_vcr.use_cassette()
     def test_get_sessions_without_before_after(self):
         sessions = self.client.get_sessions(
             user_id='u-1756bbba7e2a350')
         self.assertEqual(sessions[0].get_user_id(), 'u-1756bbba7e2a350')
 
+    @custom_vcr.use_cassette()
     def test_get_user(self):
         with self.assertRaises(NotImplementedError):
             self.client.get_user()
 
+    @custom_vcr.use_cassette()
     def test_get_session_data(self):
         with self.assertRaises(NotImplementedError):
             self.client.get_session_data()
 
+    @custom_vcr.use_cassette()
     def test_get_session_revolutions(self):
         with self.assertRaises(NotImplementedError):
             self.client.get_session_revolutions()
 
+    @custom_vcr.use_cassette()
     def test_get_user_preferences(self):
         with self.assertRaises(NotImplementedError):
             self.client.get_user_preferences()
 
+    @custom_vcr.use_cassette()
     def test_get_user_performance_state(self):
         with self.assertRaises(NotImplementedError):
             self.client.get_user_performance_state()
 
+    @custom_vcr.use_cassette()
     def test_get_session_dataframe(self):
         session_id = '2yBuOvd92C'
         self.client.login()

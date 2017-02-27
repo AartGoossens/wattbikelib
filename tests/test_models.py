@@ -3,6 +3,7 @@ from unittest import TestCase
 import pandas as pd
 import requests
 
+from vcr_setup import custom_vcr
 from wattbikelib import exceptions, models
 
 
@@ -53,21 +54,22 @@ class RideSessionModelTest(TestCase):
         url = self.session.get_tcx_url()
         self.assertTrue(url.endswith('u-1756bbba7e2a350_2yBuOvd92C.tcx'))
 
-        response = requests.head(url, headers={'Connection':'close'})
+        response = requests.get(url, headers={'Connection':'close'})
         self.assertTrue(response.ok)
 
     def test_get_wbs_url(self):
         url = self.session.get_wbs_url()
         self.assertTrue(url.endswith('u-1756bbba7e2a350_2yBuOvd92C.wbs'))
 
-        response = requests.head(url, headers={'Connection':'close'})
+        response = requests.get(url, headers={'Connection':'close'})
         self.assertTrue(response.ok)
 
+    @custom_vcr.use_cassette()
     def test_get_wbsr_url(self):
         url = self.session.get_wbsr_url()
         self.assertTrue(url.endswith('u-1756bbba7e2a350_2yBuOvd92C.wbsr'))
 
-        response = requests.head(url, headers={'Connection':'close'})
+        response = requests.get(url, headers={'Connection':'close'})
         self.assertTrue(response.ok)
 
 
