@@ -116,9 +116,21 @@ class WattbikeHubClientTest(TestCase):
 
     @custom_vcr.use_cassette()
     def test_get_session_dataframe(self):
-        session_id = '2yBuOvd92C'
-        self.client.login()
-        wdf = self.client.get_session_dataframe(session_id)
+        wdf = self.client.get_session_dataframe(
+            session_id='2yBuOvd92C',
+            user_id='u-1756bbba7e2a350')
         self.assertEqual(len(wdf), 5480)
         self.assertEqual(wdf.power.dtype, float)
         self.assertEqual(wdf.polar_force.dtype, object)
+
+    @custom_vcr.use_cassette()
+    def test_get_session_dataframe_logged_in(self):
+        self.client.login()
+        wdf = self.client.get_session_dataframe('2yBuOvd92C')
+        self.assertEqual(len(wdf), 5480)
+        self.assertEqual(wdf.power.dtype, float)
+        self.assertEqual(wdf.polar_force.dtype, object)
+
+    def test_get_session_dataframe_without_user_id(self):
+        with self.assertRaises(TypeError):
+            wdf = self.client.get_session_dataframe('2yBuOvd92C')

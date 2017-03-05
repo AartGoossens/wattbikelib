@@ -123,7 +123,11 @@ class WattbikeHubClient:
 
     def get_session_dataframe(self, session_id, user_id=None):
         if not user_id:
-            user_id = self.user_id
+            if self.user_id:
+                user_id = self.user_id
+            else:
+                raise TypeError('kwarg \'user_id\' cannot be None when not logged in')
+
         url = build_hub_files_url(user_id, session_id)
         wbs = self._get_request_json(url)
 
