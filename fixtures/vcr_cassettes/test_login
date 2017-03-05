@@ -11,10 +11,10 @@ interactions:
     uri: https://api.wattbike.com/v2/login
   response:
     body: {string: '{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
-        "updatedAt": "2017-02-24T22:16:15.738Z", "vanityName": "aart.goossens", "username":
-        "USERNAME", "email": "noreply@example.com", "firstName": "Aart", "lastName":
-        "Goossens", "displayName": "Aart Goossens", "gender": "m", "birthDate": {"__type":
-        "Date", "iso": "1989-01-08T00:00:00.000Z"}, "country": null, "profileImage":
+        "updatedAt": "2017-02-24T22:16:15.738Z", "vanityName": "VANITY_NAME", "username":
+        "USERNAME", "email": "arnold@extremelyfit.com", "firstName": "FIRST_NAME",
+        "lastName": "LAST_NAME", "displayName": "DISPLAY_NAME", "gender": "m", "birthDate":
+        {"__type": "Date", "iso": "BIRTH_DATE"}, "country": null, "profileImage":
         null, "additionalNotificationEmail": null, "emailVerified": true, "authData":
         {"strava": {"id": "STRAVA_ID", "access_token": "STRAVA_ACCESS_TOKEN"}}, "performanceState":
         {"__type": "Pointer", "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"},
@@ -32,8 +32,8 @@ interactions:
       Alt-Svc: [clear]
       Content-Length: ['1050']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Thu, 02 Mar 2017 21:14:09 GMT']
-      ETag: [W/"41a-EjflbKm1N6IwDa35hwKc9Q"]
+      Date: ['Sun, 05 Mar 2017 19:01:22 GMT']
+      ETag: [W/"41a-Ytph8doBAKNRcrtlNko+Zg"]
       Server: [nginx/1.10.2]
       Vary: [Accept-Encoding]
       Via: [1.1 google]

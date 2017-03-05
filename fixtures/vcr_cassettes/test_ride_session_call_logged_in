@@ -11,10 +11,10 @@ interactions:
     uri: https://api.wattbike.com/v2/login
   response:
     body: {string: '{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
-        "updatedAt": "2017-02-24T22:16:15.738Z", "vanityName": "aart.goossens", "username":
-        "USERNAME", "email": "noreply@example.com", "firstName": "Aart", "lastName":
-        "Goossens", "displayName": "Aart Goossens", "gender": "m", "birthDate": {"__type":
-        "Date", "iso": "1989-01-08T00:00:00.000Z"}, "country": null, "profileImage":
+        "updatedAt": "2017-02-24T22:16:15.738Z", "vanityName": "VANITY_NAME", "username":
+        "USERNAME", "email": "arnold@extremelyfit.com", "firstName": "FIRST_NAME",
+        "lastName": "LAST_NAME", "displayName": "DISPLAY_NAME", "gender": "m", "birthDate":
+        {"__type": "Date", "iso": "BIRTH_DATE"}, "country": null, "profileImage":
         null, "additionalNotificationEmail": null, "emailVerified": true, "authData":
         {"strava": {"id": "STRAVA_ID", "access_token": "STRAVA_ACCESS_TOKEN"}}, "performanceState":
         {"__type": "Pointer", "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"},
@@ -32,8 +32,8 @@ interactions:
       Alt-Svc: [clear]
       Content-Length: ['1050']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Thu, 02 Mar 2017 21:14:09 GMT']
-      ETag: [W/"41a-POBeKplID7IQQPoXjJap2w"]
+      Date: ['Sun, 05 Mar 2017 19:01:24 GMT']
+      ETag: [W/"41a-T7uWhHBDm7421W7fEVJZpA"]
       Server: [nginx/1.10.2]
       Vary: [Accept-Encoding]
       Via: [1.1 google]
@@ -42,7 +42,7 @@ interactions:
 - request:
     body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
       "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
-      "f375bbaa-9514-556a-be57-393849c741eb", "_SessionToken": "r:6114b3c58a9f486097ab88b0560625fb",
+      "f375bbaa-9514-556a-be57-393849c741eb", "_SessionToken": "r:b36cde61d520ff6dd0c06e9aefd127b6",
       "where": {"objectId": "2yBuOvd92C"}}'
     headers:
       Content-Length: ['288']
@@ -74,7 +74,7 @@ interactions:
       Alt-Svc: [clear]
       Content-Length: ['1126']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Thu, 02 Mar 2017 21:14:09 GMT']
+      Date: ['Sun, 05 Mar 2017 19:01:28 GMT']
       ETag: [W/"466-p43XXABOUom9grBDoW371A"]
       Server: [nginx/1.10.2]
       Vary: [Accept-Encoding]
