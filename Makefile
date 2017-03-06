@@ -2,7 +2,7 @@ test:
 	python -m unittest discover tests
 
 coverage:
-	coverage run --source=wattbikelib -m unittest discover tests
+	coverage run --source=wblib -m unittest discover tests
 	coverage report
 	coverage html
 

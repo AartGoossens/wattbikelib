@@ -5,8 +5,8 @@ import requests
 
 import params
 from vcr_setup import custom_vcr
-from wattbikelib import exceptions
-from wattbikelib.client import WattbikeHubClient
+from wblib import exceptions
+from wblib.client import WattbikeHubClient
 
 
 class WattbikeHubClientTest(TestCase):

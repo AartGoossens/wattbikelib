@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from wattbikelib import tools
+from wblib import tools
 
 
 class ToolsTest(TestCase):

@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 
 from vcr_setup import custom_vcr
-from wattbikelib import exceptions, models
+from wblib import exceptions, models
 
 
 class RideSessionResponseModelTest(TestCase):
