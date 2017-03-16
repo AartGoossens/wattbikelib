@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+import numpy as np
 import pandas as pd
 import requests
 
@@ -161,6 +162,47 @@ class WattbikeDataFrameTest(TestCase):
         self.assertTrue('_359' in self.wdf.columns)
         self.assertIsInstance(self.wdf.loc[0, '_0'], float)
         self.assertEqual(self.wdf.loc[0, '_0'], 0.65648854961832059)
+
+    def test_min_max_angles(self):
+        self.wdf.add_polar_forces()
+        self.assertTrue('left_max_angle' not in self.wdf.columns)
+        self.wdf.add_min_max_angles()
+
+        self.assertTrue('left_max_angle' in self.wdf.columns)
+        self.assertTrue('left_min_angle' in self.wdf.columns)
+        self.assertTrue('right_max_angle' in self.wdf.columns)
+        self.assertTrue('right_min_angle' in self.wdf.columns)
+
+        self.assertEqual(self.wdf.iloc[0].left_max_angle, 129.0)
+        self.assertEqual(self.wdf.iloc[0].left_min_angle, 22.0)
+        self.assertEqual(self.wdf.iloc[0].right_max_angle, 121.0)
+        self.assertEqual(self.wdf.iloc[0].right_min_angle, 30.0)
+
+        self.assertTrue(np.isnan(self.wdf.iloc[1].left_max_angle))
+        self.assertTrue(np.isnan(self.wdf.iloc[1].left_min_angle))
+        self.assertTrue(np.isnan(self.wdf.iloc[1].right_max_angle))
+        self.assertTrue(np.isnan(self.wdf.iloc[1].right_min_angle))
+
+    def test_min_max_angles_columns_already_exist(self):
+        self.wdf.add_polar_forces()
+        self.wdf.add_min_max_angles()
+        self.wdf.add_min_max_angles()
+
+        self.assertEqual(self.wdf.iloc[0].left_max_angle, 129.0)
+        self.assertTrue(np.isnan(self.wdf.iloc[1].left_max_angle))
+
+    def test_min_max_angles_without_polar_forces(self):
+        self.wdf.add_min_max_angles()
+
+        self.assertTrue(np.isnan(self.wdf.iloc[0].left_max_angle))
+        self.assertTrue(np.isnan(self.wdf.iloc[0].left_min_angle))
+        self.assertTrue(np.isnan(self.wdf.iloc[0].right_max_angle))
+        self.assertTrue(np.isnan(self.wdf.iloc[0].right_min_angle))
+
+        self.assertTrue(np.isnan(self.wdf.iloc[1].left_max_angle))
+        self.assertTrue(np.isnan(self.wdf.iloc[1].left_min_angle))
+        self.assertTrue(np.isnan(self.wdf.iloc[1].right_max_angle))
+        self.assertTrue(np.isnan(self.wdf.iloc[1].right_min_angle))
 
     def test_polar_plot(self):
         self.wdf.add_polar_forces()

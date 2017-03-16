@@ -66,10 +66,13 @@ class WattbikeDataFrame(pd.DataFrame):
 
         return self
 
+    def _polar_force_column_labels(self):
+        return [f'_{i}' for i in range(361)]
+
     def add_polar_forces(self):
         _df = pd.DataFrame()
         new_angles = np.arange(0.0, 361.0)
-        column_labels = ['_{}'.format(int(i)) for i in new_angles]
+        column_labels = self._polar_force_column_labels()
 
         if not '_0' in self.columns:
             for label in column_labels:
@@ -104,7 +107,7 @@ class WattbikeDataFrame(pd.DataFrame):
     def polar_plot(self):
         ax = plt.subplot(111, projection='polar')
 
-        polar_force_columns = ['_{}'.format(i) for i in range(361)]
+        polar_force_columns = self._polar_force_column_labels()
         mean_polar_forces = self[polar_force_columns].mean()
         polar_angles = np.arange(90, 451) / (180 / np.pi)
         ax.plot(polar_angles, mean_polar_forces)
@@ -117,3 +120,21 @@ class WattbikeDataFrame(pd.DataFrame):
         ax.set_yticklabels([])
 
         return ax
+
+    def add_min_max_angles(self):
+        # @TODO this method is quite memory inefficient. Row by row calculation is better
+        pf_columns = self._polar_force_column_labels()
+        pf_T = self.ix[:, pf_columns].transpose().reset_index(drop=True)
+
+        left_max_angle = pf_T.ix[:180].idxmax()
+        right_max_angle = pf_T.ix[180:].idxmax() - 180
+        
+        left_min_angle = pd.concat([pf_T.ix[:135], pf_T.ix[315:]]).idxmin()
+        right_min_angle = pf_T.ix[135:315].idxmin() - 180
+
+        self['left_max_angle'] = pd.DataFrame(left_max_angle)
+        self['right_max_angle'] = pd.DataFrame(right_max_angle)
+        self['left_min_angle'] = pd.DataFrame(left_min_angle)
+        self['right_min_angle'] = pd.DataFrame(right_min_angle)
+
+        return self
