@@ -138,3 +138,10 @@ class WattbikeDataFrame(pd.DataFrame):
         self['right_min_angle'] = pd.DataFrame(right_min_angle)
 
         return self
+
+    def process(self):
+        self.columns_to_numeric()
+        self.add_polar_forces()
+        self.add_min_max_angles()
+
+        return self

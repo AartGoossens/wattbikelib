@@ -208,3 +208,18 @@ class WattbikeDataFrameTest(TestCase):
         self.wdf.add_polar_forces()
         ax = self.wdf.polar_plot()
         self.assertTrue(ax.has_data)
+
+    def test_process(self):
+        wdf = models.WattbikeDataFrame(self.data)
+
+        self.assertTrue(isinstance(wdf.iloc[0].power, str))
+        self.assertTrue('_0' not in wdf.columns)
+        self.assertTrue('left_max_angle' not in wdf.columns)
+
+        wdf.process()
+
+        self.assertTrue(isinstance(wdf.iloc[0].power, float))
+        self.assertTrue('_0' in wdf.columns)
+        self.assertTrue('left_max_angle' in wdf.columns)
+        self.assertEqual(wdf.iloc[0]._0, 0.65648854961832059)
+        self.assertEqual(wdf.iloc[0].left_max_angle, 129.0)
