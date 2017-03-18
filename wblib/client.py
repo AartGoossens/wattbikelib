@@ -77,8 +77,11 @@ class WattbikeHubClient:
 
         return session_response.sessions
 
+    def _session_id_from_url(self, session_url):
+        return session_url.split('/')[-1]
+
     def get_session(self, session_url):
-        session_id = session_url.split('/')[-1]
+        session_id = self._session_id_from_url(session_url)
         payload = {
             'where': {
                 'objectId': session_id}}
@@ -121,13 +124,14 @@ class WattbikeHubClient:
     def get_user_performance_state(self):
         raise NotImplementedError
 
-    def get_session_dataframe(self, session_id, user_id=None):
+    def get_session_dataframe(self, session_url=None, user_id=None):
         if not user_id:
             if self.user_id:
                 user_id = self.user_id
             else:
-                raise TypeError('kwarg \'user_id\' cannot be None when not logged in')
+                user_id = self.get_user_id_from_session_url(session_url)
 
+        session_id = self._session_id_from_url(session_url)
         url = build_hub_files_url(user_id, session_id)
         wbs = self._get_request_json(url)
 
@@ -140,3 +144,7 @@ class WattbikeHubClient:
         wdf['session_id'] = session_id
 
         return wdf
+
+    def get_user_id_from_session_url(self, session_url):
+        session = self.get_session(session_url)
+        return session['user']['objectId']
