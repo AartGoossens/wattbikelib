@@ -51,18 +51,20 @@ class RideSessionModelTest(TestCase):
         self.assertEqual(url,
             'https://api.wattbike.com/v2/files/u-1756bbba7e2a350_2yBuOvd92C.bla')
 
+    @custom_vcr.use_cassette()
     def test_get_tcx_url(self):
         url = self.session.get_tcx_url()
         self.assertTrue(url.endswith('u-1756bbba7e2a350_2yBuOvd92C.tcx'))
 
-        response = requests.get(url, headers={'Connection':'close'})
+        response = requests.get(url)
         self.assertTrue(response.ok)
 
+    @custom_vcr.use_cassette()
     def test_get_wbs_url(self):
         url = self.session.get_wbs_url()
         self.assertTrue(url.endswith('u-1756bbba7e2a350_2yBuOvd92C.wbs'))
 
-        response = requests.get(url, headers={'Connection':'close'})
+        response = requests.get(url)
         self.assertTrue(response.ok)
 
     @custom_vcr.use_cassette()
@@ -70,7 +72,7 @@ class RideSessionModelTest(TestCase):
         url = self.session.get_wbsr_url()
         self.assertTrue(url.endswith('u-1756bbba7e2a350_2yBuOvd92C.wbsr'))
 
-        response = requests.get(url, headers={'Connection':'close'})
+        response = requests.get(url)
         self.assertTrue(response.ok)
 
 

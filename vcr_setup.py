@@ -42,7 +42,10 @@ def body_scrub(body):
     if not body:
         return body
 
-    body_dict = json.loads(body)
+    try:
+        body_dict = json.loads(body)
+    except json.decoder.JSONDecodeError:
+        return body
 
     body_dict = replace_nested_dict(
         body_dict, BODY_REPLACEMENTS)
