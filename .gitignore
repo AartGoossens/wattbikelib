@@ -87,3 +87,17 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Vim
+*.swo
+*.swp
+*.swn
+
+# Jupyter Notebooks
+*.ipynb
+
+# macOS
+*.DS_Store
+
+# params
+params.py
