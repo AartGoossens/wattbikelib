@@ -122,6 +122,8 @@ class WattbikeHubClientTest(TestCase):
         self.assertEqual(len(wdf), 5480)
         self.assertEqual(wdf.power.dtype, float)
         self.assertEqual(wdf.polar_force.dtype, object)
+        self.assertTrue('_0' in wdf.columns)
+        self.assertTrue('left_max_angle' in wdf.columns)
 
     @custom_vcr.use_cassette()
     def test_get_session_dataframe_logged_in(self):

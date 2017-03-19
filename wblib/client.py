@@ -137,11 +137,11 @@ class WattbikeHubClient:
 
         wdf = WattbikeDataFrame(
             [flatten(rev) for lap in wbs['laps'] for rev in lap['data']])
-        wdf.columns_to_numeric()
 
         wdf['time'] = wdf.time.cumsum()
         wdf['user_id'] = user_id
         wdf['session_id'] = session_id
+        wdf.process()
 
         return wdf
 
