@@ -145,3 +145,16 @@ class WattbikeDataFrame(pd.DataFrame):
         self.add_min_max_angles()
 
         return self
+
+    def _reduce_by_column(self, column_name):
+        reduced_self = self.groupby(column_name).mean().reset_index()
+        return WattbikeDataFrame(reduced_self)
+
+    def reduce_by_session(self):
+        reduced = self._reduce_by_column('session_id')
+        reduced['user_id'] = reduced.session_id.apply(
+            lambda x: self.loc[self.session_id == x].iloc[0].user_id)
+        return reduced
+
+    def reduce_by_user(self):
+        return self._reduce_by_column('user_id')

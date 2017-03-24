@@ -225,3 +225,29 @@ class WattbikeDataFrameTest(TestCase):
         self.assertTrue('left_max_angle' in wdf.columns)
         self.assertEqual(wdf.iloc[0]._0, 0.65648854961832059)
         self.assertEqual(wdf.iloc[0].left_max_angle, 129.0)
+
+    def _create_multi_user_session_wdf(self):
+        wdf = self.wdf
+        for i in range(5):
+            wdf = wdf.append(self.wdf)
+        wdf.reset_index
+
+        wdf['session_id'] = [f'session_{i}' for i in range(4)] * 3
+        wdf['user_id'] = [f'user_{i}' for i in range(2)] * 6
+        return wdf
+
+    def test_reduce_by_session(self):
+        wdf = self._create_multi_user_session_wdf()
+        reduced_wdf = wdf.reduce_by_session()
+
+        self.assertEqual(len(reduced_wdf), 4)
+        self.assertEqual(len(set(reduced_wdf.session_id)), 4)
+        self.assertEqual(len(set(reduced_wdf.user_id)), 2)
+
+    def test_reduce_by_user(self):
+        wdf = self._create_multi_user_session_wdf()
+        reduced_wdf = wdf.reduce_by_user()
+
+        self.assertEqual(len(reduced_wdf), 2)
+        self.assertEqual(len(set(reduced_wdf.user_id)), 2)
+        self.assertTrue('session_id' not in reduced_wdf.columns)
