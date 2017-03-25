@@ -29,7 +29,7 @@ wdf = client.get_session_dataframe('https://hub.wattbike.com/session/LYPWXEjF9B'
 
 To plot the average polar plot of the session:
 ```python
-wdf.polar_plot()
+wdf.plot.polar()
 ```
 ![Image of polar plot](docs/resources/polar_plot.png)
 
@@ -53,9 +53,9 @@ wdf.power.mean()
 
 It is also possible to do analyses on subset of the data, again in a Pandas-like way. For example, it is possible to plot the mean polar view for all revolutions over 400 Watt:
 ```python
-wdf.loc[wdf.power > 400].polar_plot()
+wdf.loc[wdf.power > 400].plot.polar()
 ```
-![Image of polar plot over 400 Watt](docs/resources/polar_plot.png)
+![Image of polar plot over 400 Watt](docs/resources/polar_plot_gt_400.png)
 
 ## License
 This library is licensed under a MIT license. See [LICENSE](LICENSE).
