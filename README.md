@@ -74,6 +74,6 @@ This library is licensed under a MIT license. See [LICENSE](LICENSE).
 
 ## To do
 - [x] Add support for multiple sessions in a single WattbikeDataFrame
-- [ ] Make it possible to plot all revolutions in a single polar plot
+- [x] Make it possible to plot all revolutions in a single polar plot
 - [ ] Add import of .wse files
 Feature request? Create an issue!
