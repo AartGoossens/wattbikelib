@@ -106,7 +106,7 @@ class WattbikeDataFrame(pd.DataFrame):
 
             forces = [int(i) for i in pf.split(',')]
             forces = np.array(forces + [forces[0]])
-            forces = forces/np.median(forces)
+            forces = forces/np.mean(forces)
 
             angle_dx = 360.0 / (len(forces)-1)
 

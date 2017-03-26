@@ -189,7 +189,7 @@ class WattbikeDataFrameTest(TestCase):
         self.assertTrue('_0' in self.wdf.columns)
         self.assertTrue('_359' in self.wdf.columns)
         self.assertIsInstance(self.wdf.loc[0, '_0'], float)
-        self.assertEqual(self.wdf.loc[0, '_0'], 0.65648854961832059)
+        self.assertEqual(self.wdf.loc[0, '_0'], 0.659439450026441)
 
     def test_add_polar_forces_columns_already_exist(self):
         self.wdf.add_polar_forces()
@@ -197,7 +197,7 @@ class WattbikeDataFrameTest(TestCase):
         self.assertTrue('_0' in self.wdf.columns)
         self.assertTrue('_359' in self.wdf.columns)
         self.assertIsInstance(self.wdf.loc[0, '_0'], float)
-        self.assertEqual(self.wdf.loc[0, '_0'], 0.65648854961832059)
+        self.assertEqual(self.wdf.loc[0, '_0'], 0.659439450026441)
 
     def test_min_max_angles(self):
         self.wdf.add_polar_forces()
@@ -257,7 +257,7 @@ class WattbikeDataFrameTest(TestCase):
         self.assertTrue(isinstance(wdf.iloc[0].power, float))
         self.assertTrue('_0' in wdf.columns)
         self.assertTrue('left_max_angle' in wdf.columns)
-        self.assertEqual(wdf.iloc[0]._0, 0.65648854961832059)
+        self.assertEqual(wdf.iloc[0]._0, 0.659439450026441)
         self.assertEqual(wdf.iloc[0].left_max_angle, 129.0)
 
     def _create_multi_user_session_wdf(self):
