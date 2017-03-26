@@ -1,6 +1,6 @@
 # wblib
 
-Wblib is a library that offers a set of tools to work with Wattbike data. Wattbike session data can be downloaded directly from the Wattbike Hub.
+Wblib offers a set of tools to work with Wattbike data. Wattbike session data can be downloaded directly from the Wattbike Hub.
 
 ## Installation
 In the future it will be possible to install this library via `pip`. For now you need to clone this repository to be able to use it:
@@ -29,9 +29,21 @@ wdf = client.get_session_dataframe('https://hub.wattbike.com/session/LYPWXEjF9B'
 
 To plot the average polar plot of the session:
 ```python
-wdf.polar_plot()
+wdf.plot.polar()
 ```
 ![Image of polar plot](docs/resources/polar_plot.png)
+
+It is also possible to plot all revolutions in the same plot:
+```python
+wdf.plot.polar(full=True)
+```
+![Image of polar plot full](docs/resources/polar_plot_full.png)
+
+...even without the mean polar plot:
+```python
+wdf.plot.polar(full=True, mean=False)
+```
+![Image of polar plot full without mean](docs/resources/polar_plot_full_without_mean.png)
 
 To plot the power output during the session:
 ```python
@@ -51,17 +63,17 @@ wdf.power.mean()
 >> 206.10530695107892
 ```
 
-It is also possible to do analyses on subset of the data, again in a Pandas-like way. For example, it is possible to plot the mean polar view for all revolutions over 400 Watt:
+It is also possible to do analyses on asubset of the data, again in a Pandas-like way. For example, it is possible to plot the mean polar view for all revolutions over 400 Watt:
 ```python
-wdf.loc[wdf.power > 400].polar_plot()
+wdf.loc[wdf.power > 400].plot.polar()
 ```
-![Image of polar plot over 400 Watt](docs/resources/polar_plot.png)
+![Image of polar plot over 400 Watt](docs/resources/polar_plot_gt_400.png)
 
 ## License
 This library is licensed under a MIT license. See [LICENSE](LICENSE).
 
 ## To do
-- [ ] Add support for multiple sessions in a single WattbikeDataFrame
+- [x] Add support for multiple sessions in a single WattbikeDataFrame
 - [ ] Make it possible to plot all revolutions in a single polar plot
 - [ ] Add import of .wse files
 Feature request? Create an issue!
