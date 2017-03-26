@@ -26,3 +26,6 @@ def build_hub_files_url(user_id, session_id, extension='wbs'):
         user_id=user_id,
         session_id=session_id,
         extension=extension)
+
+def polar_force_column_labels():
+    return [f'_{i}' for i in range(361)]

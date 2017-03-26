@@ -109,22 +109,21 @@ class WattbikeFramePlotMethodsTest(TestCase):
             'force': '130.7665',
             'balance': '58.5158',
             'heartrate': '100.0000',
-            'cadence': '52.1739'},
-            {'speed': '30.7822',
-            'distance': '9.8332',
-            'power': '121.4584',
-            'time': '1.1500',
-            'force': '130.7665',
-            'balance': '58.5158',
-            'heartrate': '100.0000',
-            'cadence': '52.1739'}
-            ]
-        wdf = models.WattbikeDataFrame(self.data)
+            'cadence': '52.1739'}]
+        wdf = models.WattbikeDataFrame(self.data * 60)
         wdf.process()
         self.wfpm = models.WattbikeFramePlotMethods(wdf)
 
     def test_polar(self):
         ax = self.wfpm.polar()
+        self.assertTrue(ax.has_data)
+
+    def test_polar_full(self):
+        ax = self.wfpm.polar(full=True)
+        self.assertTrue(ax.has_data)
+
+    def test_polar_full_without_mean(self):
+        ax = self.wfpm.polar(full=True, mean=False)
         self.assertTrue(ax.has_data)
 
     def test_scatter(self):

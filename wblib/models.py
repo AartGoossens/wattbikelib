@@ -6,7 +6,7 @@ from pandas.tools.plotting import FramePlotMethods
 
 from .constants import WATTBIKE_HUB_FILES_BASE_URL
 from .exceptions import RideSessionException
-from .tools import build_hub_files_url
+from .tools import build_hub_files_url, polar_force_column_labels
 
 
 class RideSessionResponseModel:
@@ -52,13 +52,30 @@ class LoginResponseModel(dict):
 
 
 class WattbikeFramePlotMethods(FramePlotMethods):
-    def polar(self):
+    polar_angles = np.arange(90, 451) / (180 / np.pi)
+    polar_force_columns = polar_force_column_labels()
+
+    def _plot_single_polar(self, ax, polar_forces, mean):
+        if mean:
+            linewidth = 3
+            color = '#5480C7'
+        else:
+            linewidth = 0.5
+            color = '#BDBDBD'
+
+        ax.plot(self.polar_angles, polar_forces, color, linewidth=linewidth)
+
+    def polar(self, full=False, mean=True):
         ax = plt.subplot(111, projection='polar')
 
-        polar_force_columns = WattbikeDataFrame._polar_force_column_labels()
-        mean_polar_forces = self._data[polar_force_columns].mean()
-        polar_angles = np.arange(90, 451) / (180 / np.pi)
-        ax.plot(polar_angles, mean_polar_forces)
+        if full:
+            for i in range(0, len(self._data) - 50, 50):
+                forces = self._data.ix[i:i + 50, self.polar_force_columns].mean()
+                self._plot_single_polar(ax, forces, mean=False)
+
+        if mean:
+            forces = self._data[self.polar_force_columns].mean()
+            self._plot_single_polar(ax, forces, mean=True)
 
         xticks_num = 8
         xticks = np.arange(0, xticks_num, 2 * np.pi / xticks_num)
@@ -87,14 +104,10 @@ class WattbikeDataFrame(pd.DataFrame):
 
         return self
 
-    @staticmethod
-    def _polar_force_column_labels():
-        return [f'_{i}' for i in range(361)]
-
     def add_polar_forces(self):
         _df = pd.DataFrame()
         new_angles = np.arange(0.0, 361.0)
-        column_labels = WattbikeDataFrame._polar_force_column_labels()
+        column_labels = polar_force_column_labels()
 
         if not '_0' in self.columns:
             for label in column_labels:
@@ -128,7 +141,7 @@ class WattbikeDataFrame(pd.DataFrame):
     
     def add_min_max_angles(self):
         # @TODO this method is quite memory inefficient. Row by row calculation is better
-        pf_columns = WattbikeDataFrame._polar_force_column_labels()
+        pf_columns = polar_force_column_labels()
         pf_T = self.ix[:, pf_columns].transpose().reset_index(drop=True)
 
         left_max_angle = pf_T.ix[:180].idxmax()
