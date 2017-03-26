@@ -33,6 +33,18 @@ wdf.plot.polar()
 ```
 ![Image of polar plot](docs/resources/polar_plot.png)
 
+It is also possible to plot all revolutions in the same plot:
+```python
+wdf.plot.polar(full=True)
+```
+![Image of polar plot full](docs/resources/polar_plot_full.png)
+
+...even without the mean polar plot:
+```python
+wdf.plot.polar(full=True, mean=False)
+```
+![Image of polar plot full without mean](docs/resources/polar_plot_full_without_mean.png)
+
 To plot the power output during the session:
 ```python
 wdf.power.plot()
