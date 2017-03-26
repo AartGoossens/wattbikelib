@@ -1,6 +1,6 @@
 # wblib
 
-Wblib is a library that offers a set of tools to work with Wattbike data. Wattbike session data can be downloaded directly from the Wattbike Hub.
+Wblib offers a set of tools to work with Wattbike data. Wattbike session data can be downloaded directly from the Wattbike Hub.
 
 ## Installation
 In the future it will be possible to install this library via `pip`. For now you need to clone this repository to be able to use it:
@@ -51,7 +51,7 @@ wdf.power.mean()
 >> 206.10530695107892
 ```
 
-It is also possible to do analyses on subset of the data, again in a Pandas-like way. For example, it is possible to plot the mean polar view for all revolutions over 400 Watt:
+It is also possible to do analyses on asubset of the data, again in a Pandas-like way. For example, it is possible to plot the mean polar view for all revolutions over 400 Watt:
 ```python
 wdf.loc[wdf.power > 400].plot.polar()
 ```
@@ -61,7 +61,7 @@ wdf.loc[wdf.power > 400].plot.polar()
 This library is licensed under a MIT license. See [LICENSE](LICENSE).
 
 ## To do
-- [ ] Add support for multiple sessions in a single WattbikeDataFrame
+- [x] Add support for multiple sessions in a single WattbikeDataFrame
 - [ ] Make it possible to plot all revolutions in a single polar plot
 - [ ] Add import of .wse files
 Feature request? Create an issue!
