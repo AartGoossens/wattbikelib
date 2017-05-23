@@ -109,6 +109,11 @@ class WattbikeHubClient:
 
         return self._ride_session_call(payload)
 
+    def get_session_ids(self, user_id, before=None, after=None):
+        sessions = self.get_sessions(user_id, before, after)
+
+        return [session.get_user_id() for session in sessions]
+
     def get_user(self):
         raise NotImplementedError
 

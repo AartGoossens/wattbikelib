@@ -164,18 +164,18 @@ class WattbikeDataFrame(pd.DataFrame):
 
         return self
 
-    def _reduce_by_column(self, column_name):
-        reduced_self = self.groupby(column_name).mean().reset_index()
-        return WattbikeDataFrame(reduced_self)
+    def _average_by_column(self, column_name):
+        averaged_self = self.groupby(column_name).mean().reset_index()
+        return WattbikeDataFrame(averaged_self)
 
-    def reduce_by_session(self):
-        reduced = self._reduce_by_column('session_id')
-        reduced['user_id'] = reduced.session_id.apply(
+    def average_by_session(self):
+        averaged = self._average_by_column('session_id')
+        averaged['user_id'] = averaged.session_id.apply(
             lambda x: self.loc[self.session_id == x].iloc[0].user_id)
-        return reduced
+        return averaged
 
-    def reduce_by_user(self):
-        return self._reduce_by_column('user_id')
+    def average_by_user(self):
+        return self._average_by_column('user_id')
 
 WattbikeDataFrame.plot = AccessorProperty(WattbikeFramePlotMethods,
         WattbikeFramePlotMethods)

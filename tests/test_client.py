@@ -90,6 +90,14 @@ class WattbikeHubClientTest(TestCase):
         self.assertEqual(sessions[0].get_user_id(), 'u-1756bbba7e2a350')
 
     @custom_vcr.use_cassette()
+    def test_get_session_ids(self):
+        sessions = self.client.get_session_ids(
+            user_id='u-1756bbba7e2a350',
+            after=datetime.datetime(2017, 1, 1)
+        )
+        self.assertEqual(sessions[0], 'u-1756bbba7e2a350')
+
+    @custom_vcr.use_cassette()
     def test_get_user(self):
         with self.assertRaises(NotImplementedError):
             self.client.get_user()
