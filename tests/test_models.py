@@ -269,18 +269,18 @@ class WattbikeDataFrameTest(TestCase):
         wdf['user_id'] = [f'user_{i}' for i in range(2)] * 6
         return wdf
 
-    def test_reduce_by_session(self):
+    def test_average_by_session(self):
         wdf = self._create_multi_user_session_wdf()
-        reduced_wdf = wdf.reduce_by_session()
+        averaged_wdf = wdf.average_by_session()
 
-        self.assertEqual(len(reduced_wdf), 4)
-        self.assertEqual(len(set(reduced_wdf.session_id)), 4)
-        self.assertEqual(len(set(reduced_wdf.user_id)), 2)
+        self.assertEqual(len(averaged_wdf), 4)
+        self.assertEqual(len(set(averaged_wdf.session_id)), 4)
+        self.assertEqual(len(set(averaged_wdf.user_id)), 2)
 
-    def test_reduce_by_user(self):
+    def test_average_by_user(self):
         wdf = self._create_multi_user_session_wdf()
-        reduced_wdf = wdf.reduce_by_user()
+        averaged_wdf = wdf.average_by_user()
 
-        self.assertEqual(len(reduced_wdf), 2)
-        self.assertEqual(len(set(reduced_wdf.user_id)), 2)
-        self.assertTrue('session_id' not in reduced_wdf.columns)
+        self.assertEqual(len(averaged_wdf), 2)
+        self.assertEqual(len(set(averaged_wdf.user_id)), 2)
+        self.assertTrue('session_id' not in averaged_wdf.columns)
