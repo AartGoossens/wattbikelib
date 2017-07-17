@@ -5,10 +5,14 @@ import requests
 
 import params
 
-from .constants import WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL
+from .constants import (
+    WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL,
+    WATTBIKE_HUB_USER_URL
+)
 from .exceptions import RideSessionException
-from .models import (LoginResponseModel, RideSessionResponseModel,
-                     WattbikeDataFrame)
+from .models import (
+    LoginResponseModel, RideSessionResponseModel,
+    WattbikeDataFrame, PerformanceStateModel)
 from .tools import build_hub_files_url, flatten
 
 
@@ -126,8 +130,24 @@ class WattbikeHubClient:
     def get_user_preferences(self):
         raise NotImplementedError
 
-    def get_user_performance_state(self):
-        raise NotImplementedError
+    def _performance_state_call(self, payload):
+        data = self._post_request(
+            url=WATTBIKE_HUB_USER_URL,
+            payload=payload)
+        
+        return data
+
+    def get_user_performance_state(self, user_id):
+        payload = {
+            "where": {
+                "objectId": user_id},
+            "include": "performanceState",
+            "limit": 1,
+            "_method": "GET",
+        }
+        response = self._performance_state_call(payload)
+        return PerformanceStateModel(response)
+
 
     def get_session_dataframe(self, session_url=None, user_id=None):
         if not user_id:

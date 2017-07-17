@@ -96,6 +96,31 @@ class LoginResponseModelTest(TestCase):
         session_token = self.login_response.get_session_token()
         self.assertEqual(session_token, 'r:3cde15b3280d1f55d6cf3c4733f773ae')
 
+class PerformanceStateModelTest(TestCase):
+    def setUp(self):
+        self.ps_resp = dict(
+            results=[
+                dict(
+                    performanceState=dict(
+                        mhr=111,
+                        mmp=222,
+                        ftp=333
+                    )
+                )
+            ]
+        )
+
+    def test_init(self):
+        ps_model = models.PerformanceStateModel(self.ps_resp)
+        self.assertIsInstance(ps_model, models.PerformanceStateModel)
+
+    def test_get_methods(self):
+        ps_model = models.PerformanceStateModel(self.ps_resp)
+        self.assertEqual(ps_model.get_max_hr(), 111)
+        self.assertEqual(ps_model.get_max_minute_power(), 222)
+        self.assertEqual(ps_model.get_ftp(), 333)
+
+
 class WattbikeFramePlotMethodsTest(TestCase):
     def setUp(self):
         self.data = [{

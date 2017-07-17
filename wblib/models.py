@@ -51,6 +51,20 @@ class LoginResponseModel(dict):
         return self['sessionToken']
 
 
+class PerformanceStateModel:
+    def __init__(self, data):
+        self.data = data['results'][0]['performanceState']
+
+    def get_max_minute_power(self):
+        return self.data.get('mmp', None)
+
+    def get_max_hr(self):
+        return self.data.get('mhr', None)
+ 
+    def get_ftp(self):
+        return self.data.get('ftp', None)
+
+
 class WattbikeFramePlotMethods(FramePlotMethods):
     polar_angles = np.arange(90, 451) / (180 / np.pi)
     polar_force_columns = polar_force_column_labels()

@@ -119,8 +119,9 @@ class WattbikeHubClientTest(TestCase):
 
     @custom_vcr.use_cassette()
     def test_get_user_performance_state(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_user_performance_state()
+        ps_data = self.client.get_user_performance_state(
+            user_id='u-1756bbba7e2a350'
+        )
 
     @custom_vcr.use_cassette()
     def test_get_session_dataframe(self):
