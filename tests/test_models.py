@@ -1,4 +1,4 @@
-from unittest import TestCase
+from unittest import TestCase, mock
 
 import numpy as np
 import pandas as pd
@@ -309,3 +309,32 @@ class WattbikeDataFrameTest(TestCase):
         self.assertEqual(len(averaged_wdf), 2)
         self.assertEqual(len(set(averaged_wdf.user_id)), 2)
         self.assertTrue('session_id' not in averaged_wdf.columns)
+
+    def test_enrich_athlete_by_user(self):
+        wdf = self._create_multi_user_session_wdf()
+        ups = {
+            'user_0': mock.MagicMock(
+                get_ftp=lambda: 100,
+                get_max_minute_power=lambda: 133,
+                get_max_hr=lambda: 166
+            ),
+            'user_1': mock.MagicMock(
+                get_ftp=lambda: 200,
+                get_max_minute_power=lambda: 233,
+                get_max_hr=lambda: 266
+            )
+        }
+        wdf.enrich_athlete_fitness(ups)
+        self.assertEqual(wdf.iloc[0].percentage_of_ftp, 121.4584/100)
+        self.assertEqual(wdf.iloc[1].percentage_of_ftp, 121.4584/200)
+        self.assertEqual(wdf.iloc[0].percentage_of_mmp, 121.4584/133)
+        self.assertEqual(wdf.iloc[1].percentage_of_mmp, 121.4584/233)
+        self.assertEqual(wdf.iloc[0].percentage_of_mhr, 100.0/166)
+        self.assertEqual(wdf.iloc[1].percentage_of_mhr, 100.0/266)
+
+    def test_enrich_athlete_by_user_missing_user(self):
+        wdf = self._create_multi_user_session_wdf()
+        wdf.enrich_athlete_fitness({})
+        self.assertTrue(np.isnan(wdf.iloc[0].percentage_of_ftp))
+        self.assertTrue(np.isnan(wdf.iloc[0].percentage_of_mmp))
+        self.assertTrue(np.isnan(wdf.iloc[0].percentage_of_mhr))

@@ -191,5 +191,32 @@ class WattbikeDataFrame(pd.DataFrame):
     def average_by_user(self):
         return self._average_by_column('user_id')
 
+    # def _get_user_performance_state(self, user_id):
+    #     return WattbikeHubClient().get_user_performance_state(user_id)
+
+    def enrich_athlete_fitness(self, performance_states):
+        _percentage_of_mhr = []
+        _percentage_of_mmp = []
+        _percentage_of_ftp = []
+
+        for index, row in self.iterrows():
+            try:
+                ps = performance_states[row.user_id]
+                _percentage_of_mhr.append(row.heartrate/ps.get_max_hr())
+                _percentage_of_mmp.append(row.power/ps.get_max_minute_power())
+                _percentage_of_ftp.append(row.power/ps.get_ftp())
+            except KeyError:
+                _percentage_of_mhr.append(np.nan)
+                _percentage_of_mmp.append(np.nan)
+                _percentage_of_ftp.append(np.nan)
+
+        self['percentage_of_mhr'] = _percentage_of_mhr
+        self['percentage_of_mmp'] = _percentage_of_mmp
+        self['percentage_of_ftp'] = _percentage_of_ftp
+
+
+        return self
+
+
 WattbikeDataFrame.plot = AccessorProperty(WattbikeFramePlotMethods,
         WattbikeFramePlotMethods)
