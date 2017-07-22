@@ -40,4 +40,209 @@ interactions:
       Via: [1.1 google]
       X-Powered-By: [Express]
     status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "where": {"objectId": "u-1756bbba7e2a350"},
+      "include": "performanceState", "limit": 1}'
+    headers:
+      Content-Length: ['283']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/_User
+  response:
+    body: {string: '{"results": [{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-08-08T11:30:15.686Z", "vanityName": "aart.goossens", "firstName":
+        "Aart", "lastName": "Goossens", "displayName": "Aart Goossens", "country":
+        null, "profileImage": null, "performanceState": {"objectId": "i1sUr1XmEZ",
+        "thr": 158, "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "mmp": 453, "ftp": 323, "weight": 82, "mhr": 200, "createdAt":
+        "2017-08-08T11:30:14.399Z", "updatedAt": "2017-08-08T11:30:14.399Z", "ACL":
+        {"*": {"read": true}, "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}}, "__type": "Object", "className": "UserPerformanceState"},
+        "preferences": {"__type": "Pointer", "className": "UserPreferences", "objectId":
+        "up-1756bbba7e2a350"}, "statistics": {"__type": "Pointer", "className": "UserStatistics",
+        "objectId": "us-1756bbba7e2a350"}, "following": {"__type": "Relation", "className":
+        "_User"}, "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1038']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 25 Aug 2017 14:59:52 GMT']
+      ETag: [W/"40e-exl7uAPzyms7BqbiSWHZWSClXWw"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "where": {"objectId": "u-1756bbba7e2a350"},
+      "include": "performanceState", "limit": 1}'
+    headers:
+      Content-Length: ['283']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/_User
+  response:
+    body: {string: '{"results": [{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-08-08T11:30:15.686Z", "vanityName": "aart.goossens", "firstName":
+        "Aart", "lastName": "Goossens", "displayName": "Aart Goossens", "country":
+        null, "profileImage": null, "performanceState": {"objectId": "i1sUr1XmEZ",
+        "thr": 158, "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "mmp": 453, "ftp": 323, "weight": 82, "mhr": 200, "createdAt":
+        "2017-08-08T11:30:14.399Z", "updatedAt": "2017-08-08T11:30:14.399Z", "ACL":
+        {"*": {"read": true}, "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}}, "__type": "Object", "className": "UserPerformanceState"},
+        "preferences": {"__type": "Pointer", "className": "UserPreferences", "objectId":
+        "up-1756bbba7e2a350"}, "statistics": {"__type": "Pointer", "className": "UserStatistics",
+        "objectId": "us-1756bbba7e2a350"}, "following": {"__type": "Relation", "className":
+        "_User"}, "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1038']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 25 Aug 2017 15:05:06 GMT']
+      ETag: [W/"40e-exl7uAPzyms7BqbiSWHZWSClXWw"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "where": {"objectId": "u-1756bbba7e2a350"},
+      "include": "performanceState", "limit": 1}'
+    headers:
+      Content-Length: ['283']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/_User
+  response:
+    body: {string: '{"results": [{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-08-08T11:30:15.686Z", "vanityName": "aart.goossens", "firstName":
+        "Aart", "lastName": "Goossens", "displayName": "Aart Goossens", "country":
+        null, "profileImage": null, "performanceState": {"objectId": "i1sUr1XmEZ",
+        "thr": 158, "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "mmp": 453, "ftp": 323, "weight": 82, "mhr": 200, "createdAt":
+        "2017-08-08T11:30:14.399Z", "updatedAt": "2017-08-08T11:30:14.399Z", "ACL":
+        {"*": {"read": true}, "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}}, "__type": "Object", "className": "UserPerformanceState"},
+        "preferences": {"__type": "Pointer", "className": "UserPreferences", "objectId":
+        "up-1756bbba7e2a350"}, "statistics": {"__type": "Pointer", "className": "UserStatistics",
+        "objectId": "us-1756bbba7e2a350"}, "following": {"__type": "Relation", "className":
+        "_User"}, "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1038']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 27 Aug 2017 10:50:25 GMT']
+      ETag: [W/"40e-exl7uAPzyms7BqbiSWHZWSClXWw"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "where": {"objectId": "u-1756bbba7e2a350"},
+      "include": "performanceState", "limit": 1}'
+    headers:
+      Content-Length: ['283']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/_User
+  response:
+    body: {string: '{"results": [{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-08-08T11:30:15.686Z", "vanityName": "aart.goossens", "firstName":
+        "Aart", "lastName": "Goossens", "displayName": "Aart Goossens", "country":
+        null, "profileImage": null, "performanceState": {"objectId": "i1sUr1XmEZ",
+        "thr": 158, "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "mmp": 453, "ftp": 323, "weight": 82, "mhr": 200, "createdAt":
+        "2017-08-08T11:30:14.399Z", "updatedAt": "2017-08-08T11:30:14.399Z", "ACL":
+        {"*": {"read": true}, "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}}, "__type": "Object", "className": "UserPerformanceState"},
+        "preferences": {"__type": "Pointer", "className": "UserPreferences", "objectId":
+        "up-1756bbba7e2a350"}, "statistics": {"__type": "Pointer", "className": "UserStatistics",
+        "objectId": "us-1756bbba7e2a350"}, "following": {"__type": "Relation", "className":
+        "_User"}, "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1038']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 27 Aug 2017 10:54:44 GMT']
+      ETag: [W/"40e-exl7uAPzyms7BqbiSWHZWSClXWw"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "where": {"objectId": "u-1756bbba7e2a350"},
+      "include": "performanceState", "limit": 1}'
+    headers:
+      Content-Length: ['283']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/_User
+  response:
+    body: {string: '{"results": [{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-08-08T11:30:15.686Z", "vanityName": "aart.goossens", "firstName":
+        "Aart", "lastName": "Goossens", "displayName": "Aart Goossens", "country":
+        null, "profileImage": null, "performanceState": {"objectId": "i1sUr1XmEZ",
+        "thr": 158, "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "mmp": 453, "ftp": 323, "weight": 82, "mhr": 200, "createdAt":
+        "2017-08-08T11:30:14.399Z", "updatedAt": "2017-08-08T11:30:14.399Z", "ACL":
+        {"*": {"read": true}, "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}}, "__type": "Object", "className": "UserPerformanceState"},
+        "preferences": {"__type": "Pointer", "className": "UserPreferences", "objectId":
+        "up-1756bbba7e2a350"}, "statistics": {"__type": "Pointer", "className": "UserStatistics",
+        "objectId": "us-1756bbba7e2a350"}, "following": {"__type": "Relation", "className":
+        "_User"}, "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1038']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 27 Aug 2017 12:26:29 GMT']
+      ETag: [W/"40e-exl7uAPzyms7BqbiSWHZWSClXWw"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
 version: 1

@@ -2,70 +2,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from pandas.core.base import AccessorProperty
-from pandas.tools.plotting import FramePlotMethods
+import pandas.plotting._core as gfx
 
-from .constants import WATTBIKE_HUB_FILES_BASE_URL
-from .exceptions import RideSessionException
-from .tools import build_hub_files_url, polar_force_column_labels
-
-
-class RideSessionResponseModel:
-    def __init__(self, data):
-        self._validate(data)
-        self.sessions = [RideSessionModel(s) for s in data['results']]
-
-    def _validate(self, response):
-        sessions = response['results']
-        if not len(sessions):
-            raise RideSessionException('No results returned')
+from .client import WattbikeHubClient
+from .tools import polar_force_column_labels, flatten
 
 
-class RideSessionModel(dict):
-    def get_user_id(self):
-        return self['user']['objectId']
-    
-    def get_session_id(self):
-        return self['objectId']
-    
-    def _build_url(self, extension):
-        return build_hub_files_url(
-            user_id=self.get_user_id(),
-            session_id=self.get_session_id(),
-            extension=extension)
-
-    def get_tcx_url(self):
-        return self._build_url('tcx')
-
-    def get_wbs_url(self):
-        return self._build_url('wbs')
-
-    def get_wbsr_url(self):
-        return self._build_url('wbsr')
-
-
-class LoginResponseModel(dict):
-    def get_user_id(self):
-        return self['objectId']
-
-    def get_session_token(self):
-        return self['sessionToken']
-
-
-class PerformanceStateModel:
-    def __init__(self, data):
-        self.data = data['results'][0]['performanceState']
-
-    def get_max_minute_power(self):
-        return self.data.get('mmp', None)
-
-    def get_max_hr(self):
-        return self.data.get('mhr', None)
- 
-    def get_ftp(self):
-        return self.data.get('ftp', None)
-
-
-class WattbikeFramePlotMethods(FramePlotMethods):
+class WattbikeFramePlotMethods(gfx.FramePlotMethods):
     polar_angles = np.arange(90, 451) / (180 / np.pi)
     polar_force_columns = polar_force_column_labels()
 
@@ -84,7 +27,7 @@ class WattbikeFramePlotMethods(FramePlotMethods):
 
         if full:
             for i in range(0, len(self._data) - 50, 50):
-                forces = self._data.ix[i:i + 50, self.polar_force_columns].mean()
+                forces = self._data.iloc[i:i + 50, self._data.columns.get_indexer(self.polar_force_columns)].mean()
                 self._plot_single_polar(ax, forces, mean=False)
 
         if mean:
@@ -106,19 +49,61 @@ class WattbikeDataFrame(pd.DataFrame):
     def _constructor(self):
         return WattbikeDataFrame
 
-    def plot_polar_view(self):
-        raise NotImplementedError
+    def load(self, session_id):
+        client = WattbikeHubClient()
+        if not isinstance(session_id, list):
+            session_id = [session_id]
 
-    def columns_to_numeric(self):
+        for session in session_id:
+            session_data, ride_session = client.get_session(session)
+            wdf = self._raw_session_to_wdf(session_data, ride_session)
+            self = self.append(wdf)
+
+        return self
+
+    def load_for_user(self, user_id, before=None, after=None):
+        client = WattbikeHubClient()
+        if not isinstance(user_id, list):
+            user_id = [user_id]
+        
+        for ID in user_id:
+            sessions = client.get_sessions_for_user(
+                user_id=ID, before=before, after=after
+            )
+            for session_data, ride_session in sessions:
+                wdf = self._raw_session_to_wdf(session_data, ride_session)
+                self = self.append(wdf)
+        return self
+
+    def _raw_session_to_wdf(self, session_data, ride_session):
+        wdf = WattbikeDataFrame(
+            [flatten(rev) for lap in session_data['laps'] for rev in lap['data']])
+
+        wdf['time'] = wdf.time.cumsum()
+        wdf['user_id'] = ride_session.get_user_id()
+        wdf['session_id'] = ride_session.get_session_id()
+        self._process(wdf)
+
+        return wdf
+
+    def _process(self, wdf):
+        wdf = wdf._columns_to_numeric()
+        wdf = wdf._add_polar_forces()
+        wdf = wdf._add_min_max_angles()
+        wdf = self._enrich_with_athlete_performance_state(wdf)
+
+        return wdf
+
+    def _columns_to_numeric(self):
         for col in self.columns:
             try:
-                self.ix[:, col] = pd.to_numeric(self.ix[:, col])
+                self.iloc[:, self.columns.get_loc(col)] = pd.to_numeric(self.iloc[:, self.columns.get_loc(col)])
             except ValueError:
                 continue
 
         return self
 
-    def add_polar_forces(self):
+    def _add_polar_forces(self):
         _df = pd.DataFrame()
         new_angles = np.arange(0.0, 361.0)
         column_labels = polar_force_column_labels()
@@ -153,16 +138,16 @@ class WattbikeDataFrame(pd.DataFrame):
 
         return self
     
-    def add_min_max_angles(self):
+    def _add_min_max_angles(self):
         # @TODO this method is quite memory inefficient. Row by row calculation is better
         pf_columns = polar_force_column_labels()
-        pf_T = self.ix[:, pf_columns].transpose().reset_index(drop=True)
+        pf_T = self.loc[:, pf_columns].transpose().reset_index(drop=True)
 
-        left_max_angle = pf_T.ix[:180].idxmax()
-        right_max_angle = pf_T.ix[180:].idxmax() - 180
+        left_max_angle = pf_T.iloc[:180].idxmax()
+        right_max_angle = pf_T.iloc[180:].idxmax() - 180
         
-        left_min_angle = pd.concat([pf_T.ix[:135], pf_T.ix[315:]]).idxmin()
-        right_min_angle = pf_T.ix[135:315].idxmin() - 180
+        left_min_angle = pd.concat([pf_T.iloc[:135], pf_T.iloc[315:]]).idxmin()
+        right_min_angle = pf_T.iloc[135:315].idxmin() - 180
 
         self['left_max_angle'] = pd.DataFrame(left_max_angle)
         self['right_max_angle'] = pd.DataFrame(right_max_angle)
@@ -171,16 +156,33 @@ class WattbikeDataFrame(pd.DataFrame):
 
         return self
 
-    def process(self):
-        self.columns_to_numeric()
-        self.add_polar_forces()
-        self.add_min_max_angles()
+    def _enrich_with_athlete_performance_state(self, wdf):
+        if not hasattr(self, 'peformance_states'):
+            self.performance_states = {}
 
-        return self
+        percentage_of_mhr = []
+        percentage_of_mmp = []
+        percentage_of_ftp = []
 
-    def _average_by_column(self, column_name):
-        averaged_self = self.groupby(column_name).mean().reset_index()
-        return WattbikeDataFrame(averaged_self)
+        for index, row in wdf.iterrows():
+            if row.user_id not in self.performance_states:
+                self.performance_states[row.user_id] = \
+                    WattbikeHubClient().get_user_performance_state(row.user_id)
+
+            ps = self.performance_states[row.user_id]
+
+            percentage_of_mmp.append(row.power/ps.get_max_minute_power())
+            percentage_of_ftp.append(row.power/ps.get_ftp())
+            try:
+                percentage_of_mhr.append(row.heartrate/ps.get_max_hr())
+            except AttributeError:
+                percentage_of_mhr.append(np.nan)
+
+        wdf['percentage_of_mhr'] = percentage_of_mhr
+        wdf['percentage_of_mmp'] = percentage_of_mmp
+        wdf['percentage_of_ftp'] = percentage_of_ftp
+
+        return wdf
 
     def average_by_session(self):
         averaged = self._average_by_column('session_id')
@@ -191,31 +193,9 @@ class WattbikeDataFrame(pd.DataFrame):
     def average_by_user(self):
         return self._average_by_column('user_id')
 
-    # def _get_user_performance_state(self, user_id):
-    #     return WattbikeHubClient().get_user_performance_state(user_id)
-
-    def enrich_athlete_fitness(self, performance_states):
-        _percentage_of_mhr = []
-        _percentage_of_mmp = []
-        _percentage_of_ftp = []
-
-        for index, row in self.iterrows():
-            try:
-                ps = performance_states[row.user_id]
-                _percentage_of_mhr.append(row.heartrate/ps.get_max_hr())
-                _percentage_of_mmp.append(row.power/ps.get_max_minute_power())
-                _percentage_of_ftp.append(row.power/ps.get_ftp())
-            except KeyError:
-                _percentage_of_mhr.append(np.nan)
-                _percentage_of_mmp.append(np.nan)
-                _percentage_of_ftp.append(np.nan)
-
-        self['percentage_of_mhr'] = _percentage_of_mhr
-        self['percentage_of_mmp'] = _percentage_of_mmp
-        self['percentage_of_ftp'] = _percentage_of_ftp
-
-
-        return self
+    def _average_by_column(self, column_name):
+        averaged_self = self.groupby(column_name).mean().reset_index()
+        return WattbikeDataFrame(averaged_self)
 
 
 WattbikeDataFrame.plot = AccessorProperty(WattbikeFramePlotMethods,

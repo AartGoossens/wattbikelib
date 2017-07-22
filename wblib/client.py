@@ -1,18 +1,16 @@
 import datetime
 import json
+import re
 
 import requests
 
 import params
 
-from .constants import (
-    WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL,
-    WATTBIKE_HUB_USER_URL
-)
-from .exceptions import RideSessionException
-from .models import (
-    LoginResponseModel, RideSessionResponseModel,
-    WattbikeDataFrame, PerformanceStateModel)
+from .constants import (WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL,
+                        WATTBIKE_HUB_USER_URL)
+from .data_models import (LoginResponseModel, PerformanceStateModel,
+                          RideSessionResponseModel)
+from .exceptions import RideSessionException, SessionIdNotSupportedException
 from .tools import build_hub_files_url, flatten
 
 
@@ -21,7 +19,7 @@ class WattbikeHubClient:
         self.session_token = None
         self.user_id = None
 
-    def _create_session(self):
+    def _create_request_session(self):
         headers = {'Content-Type': 'application/json'}
         session = requests.Session()
         session.headers = headers
@@ -38,7 +36,7 @@ class WattbikeHubClient:
             data.update({'_SessionToken': self.session_token})
         data.update(payload)
 
-        with self._create_session() as session:
+        with self._create_request_session() as session:
             resp = session.post(
                 url=url,
                 data=json.dumps(data))
@@ -84,15 +82,26 @@ class WattbikeHubClient:
     def _session_id_from_url(self, session_url):
         return session_url.split('/')[-1]
 
-    def get_session(self, session_url):
-        session_id = self._session_id_from_url(session_url)
+    def get_session(self, session_id_or_url):
+        session_id = self._session_id_from_url(session_id_or_url)
         payload = {
             'where': {
                 'objectId': session_id}}
         
-        return self._ride_session_call(payload)[0]
+        ride_session = self._ride_session_call(payload)[0]
+        return self.get_session_data(ride_session), ride_session
 
-    def get_sessions(self, user_id, before=None, after=None):
+    def get_sessions_for_user(self, user_id, before=None, after=None):
+        ride_sessions = self.get_ride_sessions(user_id, before, after)
+        sessions = []
+        for ride_session in ride_sessions:
+            try:
+                sessions.append((self.get_session_data(ride_session), ride_session))
+            except SessionIdNotSupportedException:
+                continue
+        return sessions
+
+    def get_ride_sessions(self, user_id, before, after):
         if not before:
             before = datetime.datetime.now()
         if not after:
@@ -109,33 +118,21 @@ class WattbikeHubClient:
                         'iso': after.isoformat()},
                     '$lt': {
                         '__type': 'Date',
-                        'iso': before.isoformat()}}}}
+                        'iso': before.isoformat()
+                    }
+                }
+            }
+        }
+        return  self._ride_session_call(payload)
 
-        return self._ride_session_call(payload)
-
-    def get_session_ids(self, user_id, before=None, after=None):
-        sessions = self.get_sessions(user_id, before, after)
-
-        return [session.get_user_id() for session in sessions]
-
-    def get_user(self):
-        raise NotImplementedError
-
-    def get_session_data(self):
-        raise NotImplementedError
-
-    def get_session_revolutions(self):
-        raise NotImplementedError
-
-    def get_user_preferences(self):
-        raise NotImplementedError
-
-    def _performance_state_call(self, payload):
-        data = self._post_request(
-            url=WATTBIKE_HUB_USER_URL,
-            payload=payload)
-        
-        return data
+    def get_session_data(self, ride_session):
+        user_id = ride_session.get_user_id()
+        session_id = ride_session.get_session_id()
+        if not re.match('\A[a-zA-Z0-9]{10}\Z', session_id):
+            raise SessionIdNotSupportedException()
+        return self._get_request_json(
+            build_hub_files_url(user_id, session_id)
+        )
 
     def get_user_performance_state(self, user_id):
         payload = {
@@ -148,28 +145,13 @@ class WattbikeHubClient:
         response = self._performance_state_call(payload)
         return PerformanceStateModel(response)
 
-
-    def get_session_dataframe(self, session_url=None, user_id=None):
-        if not user_id:
-            if self.user_id:
-                user_id = self.user_id
-            else:
-                user_id = self.get_user_id_from_session_url(session_url)
-
-        session_id = self._session_id_from_url(session_url)
-        url = build_hub_files_url(user_id, session_id)
-        wbs = self._get_request_json(url)
-
-        wdf = WattbikeDataFrame(
-            [flatten(rev) for lap in wbs['laps'] for rev in lap['data']])
-
-        wdf['time'] = wdf.time.cumsum()
-        wdf['user_id'] = user_id
-        wdf['session_id'] = session_id
-        wdf.process()
-
-        return wdf
+    def _performance_state_call(self, payload):
+        data = self._post_request(
+            url=WATTBIKE_HUB_USER_URL,
+            payload=payload)
+        
+        return data
 
     def get_user_id_from_session_url(self, session_url):
-        session = self.get_session(session_url)
-        return session['user']['objectId']
+        session_data, ride_session = self.get_session(session_url)
+        return ride_session['user']['objectId']
