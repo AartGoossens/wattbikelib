@@ -81,4 +81,356 @@ interactions:
       Via: [1.1 google]
       X-Powered-By: [Express]
     status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "username": "USERNAME", "password":
+      "PASSWORD"}'
+    headers:
+      Content-Length: ['252']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/login
+  response:
+    body: {string: '{"code": 101, "error": "Invalid username/password."}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['49']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 25 Aug 2017 14:59:54 GMT']
+      ETag: [W/"31-636TouEIUsGr5Zjkgtr35+7c+GY"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 404, message: Not Found}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "username": "USERNAME", "password":
+      "PASSWORD"}'
+    headers:
+      Content-Length: ['261']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/login
+  response:
+    body: {string: '{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-08-08T11:30:15.686Z", "vanityName": "VANITY_NAME", "username":
+        "USERNAME", "email": "arnold@extremelyfit.com", "firstName": "FIRST_NAME",
+        "lastName": "LAST_NAME", "displayName": "DISPLAY_NAME", "gender": "m", "birthDate":
+        {"__type": "Date", "iso": "BIRTH_DATE"}, "country": null, "profileImage":
+        null, "additionalNotificationEmail": null, "emailVerified": true, "performanceState":
+        {"__type": "Pointer", "className": "UserPerformanceState", "objectId": "i1sUr1XmEZ"},
+        "preferences": {"__type": "Pointer", "className": "UserPreferences", "objectId":
+        "up-1756bbba7e2a350"}, "statistics": {"__type": "Pointer", "className": "UserStatistics",
+        "objectId": "us-1756bbba7e2a350"}, "following": {"__type": "Relation", "className":
+        "_User"}, "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}, "sessionToken": "r:abbcdefghikjlmnopqrstuvwxyz012345"}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['944']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 25 Aug 2017 15:05:10 GMT']
+      ETag: [W/"3b0-BpnHy8zQSDf69P/O8VB1s7CE0k4"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "_SessionToken": "r:764f9d9ce303e2a564fe67f1e8591616",
+      "where": {"objectId": "2yBuOvd92C"}}'
+    headers:
+      Content-Length: ['288']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/RideSession
+  response:
+    body: {string: '{"results": [{"objectId": "2yBuOvd92C", "laps": [4792926], "wattbikeDevice":
+        {"serialNumber": "08673", "crankLength": 0.17, "firmwareVersion": "1.23.01",
+        "commId": 2}, "startDate": {"__type": "Date", "iso": "2017-02-15T16:33:55.266Z"},
+        "dataVersion": "1.3", "title": "Just Ride: wo 15 feb. 2017", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "userPerformanceState": {"__type": "Pointer",
+        "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "laYzwIqE4W"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-02-16T09:32:49.252Z",
+        "updatedAt": "2017-02-16T09:32:52.422Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_2yBuOvd92C.tcx"},
+        "wbss": []}, "processingTime": 1487237570225, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1126']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 25 Aug 2017 15:05:10 GMT']
+      ETag: [W/"466-szzPl8PKwuOtSpEr7C1/UGHtYac"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "username": "USERNAME", "password":
+      "PASSWORD"}'
+    headers:
+      Content-Length: ['261']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/login
+  response:
+    body: {string: '{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-08-08T11:30:15.686Z", "vanityName": "VANITY_NAME", "username":
+        "USERNAME", "email": "arnold@extremelyfit.com", "firstName": "FIRST_NAME",
+        "lastName": "LAST_NAME", "displayName": "DISPLAY_NAME", "gender": "m", "birthDate":
+        {"__type": "Date", "iso": "BIRTH_DATE"}, "country": null, "profileImage":
+        null, "additionalNotificationEmail": null, "emailVerified": true, "performanceState":
+        {"__type": "Pointer", "className": "UserPerformanceState", "objectId": "i1sUr1XmEZ"},
+        "preferences": {"__type": "Pointer", "className": "UserPreferences", "objectId":
+        "up-1756bbba7e2a350"}, "statistics": {"__type": "Pointer", "className": "UserStatistics",
+        "objectId": "us-1756bbba7e2a350"}, "following": {"__type": "Relation", "className":
+        "_User"}, "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}, "sessionToken": "r:abbcdefghikjlmnopqrstuvwxyz012345"}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['944']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 27 Aug 2017 10:50:26 GMT']
+      ETag: [W/"3b0-BeP1iNqLmcm6Nqtsdqzj+WipqNg"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "_SessionToken": "r:817d1c1180cf95ebd921ad65544bd695",
+      "where": {"objectId": "2yBuOvd92C"}}'
+    headers:
+      Content-Length: ['288']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/RideSession
+  response:
+    body: {string: '{"results": [{"objectId": "2yBuOvd92C", "laps": [4792926], "wattbikeDevice":
+        {"serialNumber": "08673", "crankLength": 0.17, "firmwareVersion": "1.23.01",
+        "commId": 2}, "startDate": {"__type": "Date", "iso": "2017-02-15T16:33:55.266Z"},
+        "dataVersion": "1.3", "title": "Just Ride: wo 15 feb. 2017", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "userPerformanceState": {"__type": "Pointer",
+        "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "laYzwIqE4W"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-02-16T09:32:49.252Z",
+        "updatedAt": "2017-02-16T09:32:52.422Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_2yBuOvd92C.tcx"},
+        "wbss": []}, "processingTime": 1487237570225, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1126']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 27 Aug 2017 10:50:26 GMT']
+      ETag: [W/"466-szzPl8PKwuOtSpEr7C1/UGHtYac"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "username": "USERNAME", "password":
+      "PASSWORD"}'
+    headers:
+      Content-Length: ['261']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/login
+  response:
+    body: {string: '{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-08-08T11:30:15.686Z", "vanityName": "VANITY_NAME", "username":
+        "USERNAME", "email": "arnold@extremelyfit.com", "firstName": "FIRST_NAME",
+        "lastName": "LAST_NAME", "displayName": "DISPLAY_NAME", "gender": "m", "birthDate":
+        {"__type": "Date", "iso": "BIRTH_DATE"}, "country": null, "profileImage":
+        null, "additionalNotificationEmail": null, "emailVerified": true, "performanceState":
+        {"__type": "Pointer", "className": "UserPerformanceState", "objectId": "i1sUr1XmEZ"},
+        "preferences": {"__type": "Pointer", "className": "UserPreferences", "objectId":
+        "up-1756bbba7e2a350"}, "statistics": {"__type": "Pointer", "className": "UserStatistics",
+        "objectId": "us-1756bbba7e2a350"}, "following": {"__type": "Relation", "className":
+        "_User"}, "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}, "sessionToken": "r:abbcdefghikjlmnopqrstuvwxyz012345"}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['944']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 27 Aug 2017 10:54:46 GMT']
+      ETag: [W/"3b0-vVzmY17oV9CNK+j4I6V0B72KtOg"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "_SessionToken": "r:143ce1b156cc1ab5ba749b54431066b6",
+      "where": {"objectId": "2yBuOvd92C"}}'
+    headers:
+      Content-Length: ['288']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/RideSession
+  response:
+    body: {string: '{"results": [{"objectId": "2yBuOvd92C", "laps": [4792926], "wattbikeDevice":
+        {"serialNumber": "08673", "crankLength": 0.17, "firmwareVersion": "1.23.01",
+        "commId": 2}, "startDate": {"__type": "Date", "iso": "2017-02-15T16:33:55.266Z"},
+        "dataVersion": "1.3", "title": "Just Ride: wo 15 feb. 2017", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "userPerformanceState": {"__type": "Pointer",
+        "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "laYzwIqE4W"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-02-16T09:32:49.252Z",
+        "updatedAt": "2017-02-16T09:32:52.422Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_2yBuOvd92C.tcx"},
+        "wbss": []}, "processingTime": 1487237570225, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1126']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 27 Aug 2017 10:54:46 GMT']
+      ETag: [W/"466-szzPl8PKwuOtSpEr7C1/UGHtYac"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "username": "USERNAME", "password":
+      "PASSWORD"}'
+    headers:
+      Content-Length: ['261']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/login
+  response:
+    body: {string: '{"objectId": "u-1756bbba7e2a350", "createdAt": "2015-01-26T17:09:16.000Z",
+        "updatedAt": "2017-08-08T11:30:15.686Z", "vanityName": "VANITY_NAME", "username":
+        "USERNAME", "email": "arnold@extremelyfit.com", "firstName": "FIRST_NAME",
+        "lastName": "LAST_NAME", "displayName": "DISPLAY_NAME", "gender": "m", "birthDate":
+        {"__type": "Date", "iso": "BIRTH_DATE"}, "country": null, "profileImage":
+        null, "additionalNotificationEmail": null, "emailVerified": true, "performanceState":
+        {"__type": "Pointer", "className": "UserPerformanceState", "objectId": "i1sUr1XmEZ"},
+        "preferences": {"__type": "Pointer", "className": "UserPreferences", "objectId":
+        "up-1756bbba7e2a350"}, "statistics": {"__type": "Pointer", "className": "UserStatistics",
+        "objectId": "us-1756bbba7e2a350"}, "following": {"__type": "Relation", "className":
+        "_User"}, "ACL": {"role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350":
+        {"read": true, "write": true}, "*": {"read": true}}, "sessionToken": "r:abbcdefghikjlmnopqrstuvwxyz012345"}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['944']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 27 Aug 2017 12:26:31 GMT']
+      ETag: [W/"3b0-xO55V3PIsFxNBaRJnyO1e1GusTY"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "_SessionToken": "r:5083f1a1e33e7af56e068c5870ef13b9",
+      "where": {"objectId": "2yBuOvd92C"}}'
+    headers:
+      Content-Length: ['288']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/RideSession
+  response:
+    body: {string: '{"results": [{"objectId": "2yBuOvd92C", "laps": [4792926], "wattbikeDevice":
+        {"serialNumber": "08673", "crankLength": 0.17, "firmwareVersion": "1.23.01",
+        "commId": 2}, "startDate": {"__type": "Date", "iso": "2017-02-15T16:33:55.266Z"},
+        "dataVersion": "1.3", "title": "Just Ride: wo 15 feb. 2017", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "userPerformanceState": {"__type": "Pointer",
+        "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "laYzwIqE4W"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-02-16T09:32:49.252Z",
+        "updatedAt": "2017-02-16T09:32:52.422Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_2yBuOvd92C.tcx"},
+        "wbss": []}, "processingTime": 1487237570225, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['1126']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 27 Aug 2017 12:26:31 GMT']
+      ETag: [W/"466-szzPl8PKwuOtSpEr7C1/UGHtYac"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
 version: 1
