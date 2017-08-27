@@ -1,0 +1,288 @@
+interactions:
+- request:
+    body: '{"_method": "GET", "_ApplicationId": "Gopo4QrWEmTWefKMXjlT6GAN4JqafpvD",
+      "_JavaScriptKey": "p1$h@M10Tkzw#", "_ClientVersion": "js1.6.14", "_InstallationId":
+      "f375bbaa-9514-556a-be57-393849c741eb", "where": {"user": {"__type": "Pointer",
+      "className": "_User", "objectId": "u-1756bbba7e2a350"}, "startDate": {"$gt":
+      {"__type": "Date", "iso": "2017-01-01T00:00:00"}, "$lt": {"__type": "Date",
+      "iso": "2017-05-23T20:02:01.831783"}}}}'
+    headers:
+      Content-Length: ['429']
+      Content-Type: [application/json]
+    method: POST
+    uri: https://api.wattbike.com/v2/classes/RideSession
+  response:
+    body: {string: '{"results": [{"objectId": "i6LY60PUyH", "wattbikeDevice": {"serialNumber":
+        "24534", "crankLength": 0.17, "firmwareVersion": "1.23.02", "commId": 2},
+        "laps": [1494560, 2093840, 2661500, 3262970, 3275310], "location": {"altitude":
+        1, "longitude": 4.86966, "latitude": 52.38519}, "startDate": {"__type": "Date",
+        "iso": "2017-02-01T16:39:05.910Z"}, "state": "ready", "deviceUserAgent": "Mozilla/5.0
+        (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like
+        Gecko) Mobile/14D27", "sessionSummary": {"__type": "Pointer", "className":
+        "RideSessionSummary", "objectId": "ztsDRLogPp"}, "userPerformanceState": {"__type":
+        "Pointer", "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"},
+        "title": "Just Ride: wo 01 feb. 2017", "user": {"__type": "Pointer", "className":
+        "_User", "objectId": "u-1756bbba7e2a350"}, "dataVersion": "1.3", "isPrivate":
+        false, "createdAt": "2017-02-01T19:32:09.538Z", "updatedAt": "2017-02-01T19:32:13.229Z",
+        "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_i6LY60PUyH.wbs"}, "wbsr":
+        {"name": "u-1756bbba7e2a350_i6LY60PUyH.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_i6LY60PUyH.tcx"},
+        "wbss": [{"name": "u-1756bbba7e2a350_i6LY60PUyH_0-1494560.wbss"}, {"name":
+        "u-1756bbba7e2a350_i6LY60PUyH_1494560-2093840.wbss"}, {"name": "u-1756bbba7e2a350_i6LY60PUyH_2093840-2661500.wbss"},
+        {"name": "u-1756bbba7e2a350_i6LY60PUyH_2661500-3262970.wbss"}, {"name": "u-1756bbba7e2a350_i6LY60PUyH_3262970-3275310.wbss"}]},
+        "processingTime": 1485977529923, "ACL": {"*": {"read": true}, "role:Admin":
+        {"read": true, "write": true}, "u-1756bbba7e2a350": {"read": true, "write":
+        true}}}, {"objectId": "8lQVvY2bEG", "wattbikeDevice": {"serialNumber": "16432",
+        "crankLength": 0.17, "firmwareVersion": "1.23.03", "commId": 2}, "laps": [3598412],
+        "location": {"altitude": 1, "longitude": 4.86978, "latitude": 52.38513}, "startDate":
+        {"__type": "Date", "iso": "2017-02-08T16:35:11.507Z"}, "state": "ready", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "CfJHLLhcDb"}, "userPerformanceState":
+        {"__type": "Pointer", "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"},
+        "title": "Just Ride: wo 08 feb. 2017", "user": {"__type": "Pointer", "className":
+        "_User", "objectId": "u-1756bbba7e2a350"}, "dataVersion": "1.3", "isPrivate":
+        false, "createdAt": "2017-02-11T19:17:15.137Z", "updatedAt": "2017-02-11T19:18:19.828Z",
+        "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_8lQVvY2bEG.wbs"}, "wbsr":
+        {"name": "u-1756bbba7e2a350_8lQVvY2bEG.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_8lQVvY2bEG.tcx"},
+        "wbss": [{"name": "u-1756bbba7e2a350_8lQVvY2bEG_0-3598412.wbss"}]}, "processingTime":
+        1486840637074, "ACL": {"*": {"read": true}, "role:Admin": {"read": true, "write":
+        true}, "u-1756bbba7e2a350": {"read": true, "write": true}}}, {"objectId":
+        "2yBuOvd92C", "laps": [4792926], "wattbikeDevice": {"serialNumber": "08673",
+        "crankLength": 0.17, "firmwareVersion": "1.23.01", "commId": 2}, "startDate":
+        {"__type": "Date", "iso": "2017-02-15T16:33:55.266Z"}, "dataVersion": "1.3",
+        "title": "Just Ride: wo 15 feb. 2017", "deviceUserAgent": "Mozilla/5.0 (iPhone;
+        CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko)
+        Mobile/14D27", "userPerformanceState": {"__type": "Pointer", "className":
+        "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "laYzwIqE4W"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-02-16T09:32:49.252Z",
+        "updatedAt": "2017-02-16T09:32:52.422Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_2yBuOvd92C.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_2yBuOvd92C.tcx"},
+        "wbss": []}, "processingTime": 1487237570225, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "LYPWXEjF9B", "wattbikeDevice": {"serialNumber":
+        "16522", "crankLength": 0.17, "firmwareVersion": "1.23.03", "commId": 2},
+        "laps": [4394883], "location": {"altitude": 0, "longitude": 4.86976, "latitude":
+        52.38522}, "startDate": {"__type": "Date", "iso": "2017-02-26T10:22:00.922Z"},
+        "state": "ready", "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1
+        like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27", "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "0FlZRkJ9D2"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "title": "Just Ride: zo 26 feb. 2017",
+        "user": {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "dataVersion": "1.3", "isPrivate": false, "createdAt": "2017-02-26T15:18:55.398Z",
+        "updatedAt": "2017-02-26T15:18:58.420Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_LYPWXEjF9B.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_LYPWXEjF9B.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_LYPWXEjF9B.tcx"},
+        "wbss": []}, "processingTime": 1488122336025, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "maHya2thBq", "laps": [5177512], "wattbikeDevice":
+        {"serialNumber": "19417", "crankLength": 0.17, "firmwareVersion": "1.23.71",
+        "commId": 2}, "startDate": {"__type": "Date", "iso": "2017-03-01T16:31:28.243Z"},
+        "dataVersion": "1.3", "title": "Just Ride: wo 01 mrt. 2017", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "userPerformanceState": {"__type": "Pointer",
+        "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "6TihhBxOGn"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-03-15T16:36:29.063Z",
+        "updatedAt": "2017-03-15T16:36:32.929Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_maHya2thBq.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_maHya2thBq.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_maHya2thBq.tcx"},
+        "wbss": []}, "processingTime": 1489595790015, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "vVXLyouQSR", "laps": [4867691], "wattbikeDevice":
+        {"serialNumber": "19417", "crankLength": 0.17, "firmwareVersion": "1.23.71",
+        "commId": 2}, "startDate": {"__type": "Date", "iso": "2017-03-15T16:36:07.500Z"},
+        "dataVersion": "1.3", "title": "Just Ride: wo 15 mrt. 2017", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "userPerformanceState": {"__type": "Pointer",
+        "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "MpO9iM75r3"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-03-16T08:54:37.653Z",
+        "updatedAt": "2017-03-16T08:54:41.329Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_vVXLyouQSR.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_vVXLyouQSR.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_vVXLyouQSR.tcx"},
+        "wbss": []}, "processingTime": 1489654478789, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "qOkEYYbBoH", "laps": [1448831], "wattbikeDevice":
+        {"serialNumber": "24528", "crankLength": 0.17, "firmwareVersion": "1.23.02",
+        "commId": 2}, "startDate": {"__type": "Date", "iso": "2017-03-29T15:37:24.090Z"},
+        "dataVersion": "1.3", "title": "Just Ride: wo 29 mrt. 2017", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "userPerformanceState": {"__type": "Pointer",
+        "className": "UserPerformanceState", "objectId": "ups-1756bbba7e2a350"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "TTCOcqvC01"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-03-29T16:24:46.917Z",
+        "updatedAt": "2017-03-29T16:24:49.526Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_qOkEYYbBoH.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_qOkEYYbBoH.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_qOkEYYbBoH.tcx"},
+        "wbss": []}, "processingTime": 1490804687308, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "gScsgNUBCM", "wattbikeDevice": {"serialNumber":
+        "24528", "crankLength": 0.17, "firmwareVersion": "1.23.02", "commId": 2},
+        "laps": [29510], "location": {"latitude": 52.3851, "longitude": 4.8697, "altitude":
+        1}, "startDate": {"__type": "Date", "iso": "2017-03-29T16:24:56.401Z"}, "state":
+        "ready", "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like
+        Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27", "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "fB1CKywb5B"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "title": "Just Ride: wo 29 mrt. 2017",
+        "user": {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "dataVersion": "1.3", "isPrivate": false, "createdAt": "2017-03-29T16:25:29.843Z",
+        "updatedAt": "2017-03-29T16:25:32.590Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_gScsgNUBCM.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_gScsgNUBCM.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_gScsgNUBCM.tcx"},
+        "wbss": []}, "processingTime": 1490804730169, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "iU4NomHr8J", "wattbikeDevice": {"serialNumber":
+        "24528", "crankLength": 0.17, "firmwareVersion": "1.23.02", "commId": 2},
+        "laps": [271472, 1477412, 1810812], "location": {"latitude": 52.38529, "longitude":
+        4.86986, "altitude": 1}, "startDate": {"__type": "Date", "iso": "2017-03-29T16:25:55.520Z"},
+        "state": "ready", "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1
+        like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27", "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "CYUTZqpall"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ups-1756bbba7e2a350"}, "title": "Just Ride: wo 29 mrt. 2017",
+        "user": {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "dataVersion": "1.3", "isPrivate": false, "createdAt": "2017-03-29T16:56:34.612Z",
+        "updatedAt": "2017-03-29T16:56:36.874Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_iU4NomHr8J.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_iU4NomHr8J.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_iU4NomHr8J.tcx"},
+        "wbss": [{"name": "u-1756bbba7e2a350_iU4NomHr8J_0-271472.wbss"}, {"name":
+        "u-1756bbba7e2a350_iU4NomHr8J_271472-1477412.wbss"}, {"name": "u-1756bbba7e2a350_iU4NomHr8J_1477412-1810812.wbss"}]},
+        "processingTime": 1490806594980, "ACL": {"*": {"read": true}, "role:Admin":
+        {"read": true, "write": true}, "u-1756bbba7e2a350": {"read": true, "write":
+        true}}}, {"objectId": "Gpxe9wCfE5", "wattbikeDevice": {"serialNumber": "24534",
+        "crankLength": 0.17, "firmwareVersion": "1.23.02", "commId": 2}, "laps": [5182370],
+        "location": {"latitude": 52.38529, "longitude": 4.86981, "altitude": 1}, "startDate":
+        {"__type": "Date", "iso": "2017-04-05T15:33:07.507Z"}, "state": "ready", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "sessionSummary": {"__type": "Pointer",
+        "className": "RideSessionSummary", "objectId": "QE6tRPDYjl"}, "userPerformanceState":
+        {"__type": "Pointer", "className": "UserPerformanceState", "objectId": "ykgG4Op828"},
+        "title": "Just Ride: wo 05 apr. 2017", "user": {"__type": "Pointer", "className":
+        "_User", "objectId": "u-1756bbba7e2a350"}, "dataVersion": "1.3", "isPrivate":
+        false, "createdAt": "2017-04-12T15:35:34.970Z", "updatedAt": "2017-04-12T15:35:37.955Z",
+        "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_Gpxe9wCfE5.wbs"}, "wbsr":
+        {"name": "u-1756bbba7e2a350_Gpxe9wCfE5.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_Gpxe9wCfE5.tcx"},
+        "wbss": []}, "processingTime": 1492011335516, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "I2mDVjVTht", "wattbikeDevice": {"serialNumber":
+        "24368", "crankLength": 0.17, "firmwareVersion": "1.23.02", "commId": 2},
+        "laps": [474206], "location": {"latitude": 52.3852, "longitude": 4.86989,
+        "altitude": 0}, "startDate": {"__type": "Date", "iso": "2017-04-12T15:35:28.316Z"},
+        "state": "ready", "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1
+        like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Mobile/14D27", "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "JrZcsQBcAs"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ykgG4Op828"}, "title": "Just Ride: wo 12 apr. 2017", "user":
+        {"__type": "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"},
+        "dataVersion": "1.3", "isPrivate": false, "createdAt": "2017-04-12T15:43:42.117Z",
+        "updatedAt": "2017-04-12T15:43:45.277Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_I2mDVjVTht.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_I2mDVjVTht.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_I2mDVjVTht.tcx"},
+        "wbss": []}, "processingTime": 1492011822795, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "eypje0PAON", "laps": [4441010], "wattbikeDevice":
+        {"serialNumber": "24368", "crankLength": 0.17, "firmwareVersion": "1.23.02",
+        "commId": 2}, "startDate": {"__type": "Date", "iso": "2017-04-12T15:44:20.667Z"},
+        "dataVersion": "1.3", "title": "Just Ride: wo 12 apr. 2017", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6
+        (KHTML, like Gecko) Mobile/14D27", "userPerformanceState": {"__type": "Pointer",
+        "className": "UserPerformanceState", "objectId": "ykgG4Op828"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "He4vELLLzD"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-04-12T17:01:06.060Z",
+        "updatedAt": "2017-04-12T17:01:08.461Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_eypje0PAON.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_eypje0PAON.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_eypje0PAON.tcx"},
+        "wbss": []}, "processingTime": 1492016466587, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "HhUXzpv4aV", "laps": [5275326], "wattbikeDevice":
+        {"serialNumber": "24534", "crankLength": 0.17, "firmwareVersion": "1.23.02",
+        "commId": 2}, "startDate": {"__type": "Date", "iso": "2017-05-03T15:30:13.002Z"},
+        "dataVersion": "1.3", "title": "Just Ride: wo 03 mei 2017", "deviceUserAgent":
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30
+        (KHTML, like Gecko) Mobile/14E304", "userPerformanceState": {"__type": "Pointer",
+        "className": "UserPerformanceState", "objectId": "ykgG4Op828"}, "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "rZYeWbbLPg"},
+        "state": "ready", "user": {"__type": "Pointer", "className": "_User", "objectId":
+        "u-1756bbba7e2a350"}, "isPrivate": false, "createdAt": "2017-05-10T15:27:04.794Z",
+        "updatedAt": "2017-05-10T15:27:07.830Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_HhUXzpv4aV.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_HhUXzpv4aV.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_HhUXzpv4aV.tcx"},
+        "wbss": []}, "processingTime": 1494430025022, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "f1gf3b9isB", "wattbikeDevice": {"serialNumber":
+        "24528", "crankLength": 0.17, "firmwareVersion": "1.23.02", "commId": 2},
+        "laps": [378120], "location": {"latitude": 52.38515, "longitude": 4.86983,
+        "altitude": 0}, "startDate": {"__type": "Date", "iso": "2017-05-10T15:26:42.811Z"},
+        "state": "ready", "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1
+        like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304", "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "DTsWoWaanG"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ykgG4Op828"}, "title": "Just Ride: wo 10 mei 2017", "user": {"__type":
+        "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"}, "dataVersion":
+        "1.3", "isPrivate": false, "createdAt": "2017-05-10T15:33:25.611Z", "updatedAt":
+        "2017-05-10T15:33:29.649Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_f1gf3b9isB.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_f1gf3b9isB.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_f1gf3b9isB.tcx"},
+        "wbss": []}, "processingTime": 1494430405810, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "1uet1uy0AY", "wattbikeDevice": {"serialNumber":
+        "24528", "crankLength": 0.17, "firmwareVersion": "1.23.02", "commId": 2},
+        "laps": [4951276], "location": {"latitude": 52.38519, "longitude": 4.86985,
+        "altitude": 0}, "startDate": {"__type": "Date", "iso": "2017-05-10T15:34:18.320Z"},
+        "state": "ready", "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1
+        like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304", "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "zsny3DPVJW"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ykgG4Op828"}, "title": "Just Ride: wo 10 mei 2017", "user": {"__type":
+        "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"}, "dataVersion":
+        "1.3", "isPrivate": false, "createdAt": "2017-05-10T16:57:38.505Z", "updatedAt":
+        "2017-05-10T16:57:40.883Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_1uet1uy0AY.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_1uet1uy0AY.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_1uet1uy0AY.tcx"},
+        "wbss": []}, "processingTime": 1494435458640, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "BPa83w7ACr", "wattbikeDevice": {"serialNumber":
+        "27770", "crankLength": 0.17, "firmwareVersion": "1.23.02", "commId": 2},
+        "laps": [206741], "location": {"latitude": 52.38524, "longitude": 4.86989,
+        "altitude": 0}, "startDate": {"__type": "Date", "iso": "2017-05-18T17:05:07.581Z"},
+        "state": "ready", "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1
+        like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304", "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "QeEtMCf4Ss"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ykgG4Op828"}, "title": "Just Ride: do 18 mei 2017", "user": {"__type":
+        "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"}, "dataVersion":
+        "1.3", "isPrivate": false, "createdAt": "2017-05-18T17:08:46.608Z", "updatedAt":
+        "2017-05-18T17:08:48.836Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_BPa83w7ACr.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_BPa83w7ACr.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_BPa83w7ACr.tcx"},
+        "wbss": []}, "processingTime": 1495127326958, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}, {"objectId": "prB6i8GXcz", "wattbikeDevice": {"serialNumber":
+        "27770", "crankLength": 0.17, "firmwareVersion": "1.23.02", "commId": 2},
+        "laps": [4502500], "location": {"latitude": 52.38522, "longitude": 4.86978,
+        "altitude": 0}, "startDate": {"__type": "Date", "iso": "2017-05-18T17:09:26.363Z"},
+        "state": "ready", "deviceUserAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1
+        like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304", "sessionSummary":
+        {"__type": "Pointer", "className": "RideSessionSummary", "objectId": "e5qlsJcjso"},
+        "userPerformanceState": {"__type": "Pointer", "className": "UserPerformanceState",
+        "objectId": "ykgG4Op828"}, "title": "Just Ride: do 18 mei 2017", "user": {"__type":
+        "Pointer", "className": "_User", "objectId": "u-1756bbba7e2a350"}, "dataVersion":
+        "1.3", "isPrivate": false, "createdAt": "2017-05-18T18:33:08.745Z", "updatedAt":
+        "2017-05-18T18:33:11.730Z", "sessionData": {"wbs": {"name": "u-1756bbba7e2a350_prB6i8GXcz.wbs"},
+        "wbsr": {"name": "u-1756bbba7e2a350_prB6i8GXcz.wbsr"}, "tcx": {"name": "u-1756bbba7e2a350_prB6i8GXcz.tcx"},
+        "wbss": []}, "processingTime": 1495132389097, "ACL": {"*": {"read": true},
+        "role:Admin": {"read": true, "write": true}, "u-1756bbba7e2a350": {"read":
+        true, "write": true}}}]}'}
+    headers:
+      Access-Control-Allow-Headers: ['X-Parse-Master-Key, X-Parse-REST-API-Key, X-Parse-Javascript-Key,
+          X-Parse-Application-Id, X-Parse-Client-Version, X-Parse-Session-Token, X-Requested-With,
+          X-Parse-Revocable-Session, Content-Type']
+      Access-Control-Allow-Methods: ['GET,PUT,POST,DELETE,OPTIONS']
+      Access-Control-Allow-Origin: ['*']
+      Alt-Svc: [clear]
+      Content-Length: ['20158']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Tue, 23 May 2017 18:01:40 GMT']
+      ETag: [W/"4ebe-YOYohMSXnuPfmiaUjy7iepAeYlo"]
+      Server: [nginx/1.10.2]
+      Vary: [Accept-Encoding]
+      Via: [1.1 google]
+      X-Powered-By: [Express]
+    status: {code: 200, message: OK}
+version: 1

@@ -69,76 +69,32 @@ class WattbikeHubClientTest(TestCase):
         session_url = 'https://hub.wattbike.com/session/2yBuOvd92C'
         session = self.client.get_session(session_url)
 
-        self.assertEqual(session.get_session_id(), '2yBuOvd92C')
-        self.assertEqual(session.get_user_id(), 'u-1756bbba7e2a350')
+        self.assertEqual(session[1].get_session_id(), '2yBuOvd92C')
+        self.assertEqual(session[1].get_user_id(), 'u-1756bbba7e2a350')
 
     @custom_vcr.use_cassette()
-    def test_get_sessions(self):
-        before = datetime.datetime(2017, 1, 1)
-        after = datetime.datetime(2015, 12, 31)
-        sessions = self.client.get_sessions(
+    def test_get_sessions_for_user(self):
+        before = datetime.datetime(2017, 3, 1)
+        after = datetime.datetime(2017, 1, 1)
+        sessions = self.client.get_sessions_for_user(
             user_id='u-1756bbba7e2a350',
             before=before,
             after=after)
-        self.assertEqual(len(sessions), 11)
-        self.assertEqual(sessions[0].get_user_id(), 'u-1756bbba7e2a350')
+        self.assertEqual(len(sessions), 4)
+        self.assertEqual(sessions[0][1].get_user_id(), 'u-1756bbba7e2a350')
 
     @custom_vcr.use_cassette()
-    def test_get_sessions_without_before_after(self):
-        sessions = self.client.get_sessions(
+    def test_get_sessions_for_user_without_before_after(self):
+        sessions = self.client.get_sessions_for_user(
             user_id='u-1756bbba7e2a350')
-        self.assertEqual(sessions[0].get_user_id(), 'u-1756bbba7e2a350')
-
-    @custom_vcr.use_cassette()
-    def test_get_user(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_user()
-
-    @custom_vcr.use_cassette()
-    def test_get_session_data(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_session_data()
-
-    @custom_vcr.use_cassette()
-    def test_get_session_revolutions(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_session_revolutions()
-
-    @custom_vcr.use_cassette()
-    def test_get_user_preferences(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_user_preferences()
+        self.assertEqual(len(sessions), 24)
+        self.assertEqual(sessions[0][1].get_user_id(), 'u-1756bbba7e2a350')
 
     @custom_vcr.use_cassette()
     def test_get_user_performance_state(self):
-        with self.assertRaises(NotImplementedError):
-            self.client.get_user_performance_state()
-
-    @custom_vcr.use_cassette()
-    def test_get_session_dataframe(self):
-        wdf = self.client.get_session_dataframe(
-            session_url='https://hub.wattbike.com/session/2yBuOvd92C',
-            user_id='u-1756bbba7e2a350')
-        self.assertEqual(len(wdf), 5480)
-        self.assertEqual(wdf.power.dtype, float)
-        self.assertEqual(wdf.polar_force.dtype, object)
-        self.assertTrue('_0' in wdf.columns)
-        self.assertTrue('left_max_angle' in wdf.columns)
-
-    @custom_vcr.use_cassette()
-    def test_get_session_dataframe_logged_in(self):
-        self.client.login()
-        wdf = self.client.get_session_dataframe('https://hub.wattbike.com/session/2yBuOvd92C')
-        self.assertEqual(len(wdf), 5480)
-        self.assertEqual(wdf.power.dtype, float)
-        self.assertEqual(wdf.polar_force.dtype, object)
-
-    @custom_vcr.use_cassette()
-    def test_get_session_dataframe_without_user_id(self):
-        wdf = self.client.get_session_dataframe('https://hub.wattbike.com/session/2yBuOvd92C')
-        self.assertEqual(len(wdf), 5480)
-        self.assertEqual(wdf.power.dtype, float)
-        self.assertEqual(wdf.polar_force.dtype, object)
+        ps_data = self.client.get_user_performance_state(
+            user_id='u-1756bbba7e2a350'
+        )
 
     @custom_vcr.use_cassette()
     def test_get_user_id_from_session_url(self):

@@ -1,100 +1,12 @@
-from unittest import TestCase
+import datetime
+from unittest import TestCase, mock
 
 import numpy as np
 import pandas as pd
-import requests
-
 from vcr_setup import custom_vcr
-from wblib import exceptions, models
 
+from wblib import models
 
-class RideSessionResponseModelTest(TestCase):
-    def test_init(self):
-        response_model = models.RideSessionResponseModel({'results': [{}]})
-        self.assertEqual(len(response_model.sessions), 1)
-
-    def test_validate(self):
-        response_model = models.RideSessionResponseModel({'results': [{}]})
-        self.assertIsNone(response_model._validate({'results': [{}]}))
-
-    def test_validate_no_results(self):
-        response_model = models.RideSessionResponseModel({'results': [{}]})
-        with self.assertRaisesRegex(
-                expected_exception=exceptions.RideSessionException,
-                expected_regex='No results returned'):
-            response_model._validate({'results': []})
-
-
-class RideSessionModelTest(TestCase):
-    def setUp(self):
-        session_data = {
-            'objectId': '2yBuOvd92C',
-            'user': {
-                'objectId': 'u-1756bbba7e2a350'}}
-        self.session = models.RideSessionModel(session_data)
-
-    def test_init(self):
-        session = models.RideSessionModel({})
-        self.assertIsInstance(session, models.RideSessionModel)
-        self.assertIsInstance(session, dict)
-
-    def test_get_user_id(self):
-        user_id = self.session.get_user_id()
-        self.assertEqual(user_id, 'u-1756bbba7e2a350')
-
-    def test_get_session_id(self):
-        session_id = self.session.get_session_id()
-        self.assertEqual(session_id, '2yBuOvd92C')
-
-    def test_build_url(self):
-        url = self.session._build_url('bla')
-        self.assertEqual(url,
-            'https://api.wattbike.com/v2/files/u-1756bbba7e2a350_2yBuOvd92C.bla')
-
-    @custom_vcr.use_cassette()
-    def test_get_tcx_url(self):
-        url = self.session.get_tcx_url()
-        self.assertTrue(url.endswith('u-1756bbba7e2a350_2yBuOvd92C.tcx'))
-
-        response = requests.get(url)
-        self.assertTrue(response.ok)
-
-    @custom_vcr.use_cassette()
-    def test_get_wbs_url(self):
-        url = self.session.get_wbs_url()
-        self.assertTrue(url.endswith('u-1756bbba7e2a350_2yBuOvd92C.wbs'))
-
-        response = requests.get(url)
-        self.assertTrue(response.ok)
-
-    @custom_vcr.use_cassette()
-    def test_get_wbsr_url(self):
-        url = self.session.get_wbsr_url()
-        self.assertTrue(url.endswith('u-1756bbba7e2a350_2yBuOvd92C.wbsr'))
-
-        response = requests.get(url)
-        self.assertTrue(response.ok)
-
-
-class LoginResponseModelTest(TestCase):
-    def setUp(self):
-        session_data = {
-            'objectId': 'u-1756bbba7e2a350',
-            'sessionToken': 'r:3cde15b3280d1f55d6cf3c4733f773ae'}
-        self.login_response = models.LoginResponseModel(session_data)
-
-    def test_init(self):
-        session = models.LoginResponseModel({})
-        self.assertIsInstance(session, models.LoginResponseModel)
-        self.assertIsInstance(session, dict)
-
-    def test_get_user_id(self):
-        user_id = self.login_response.get_user_id()
-        self.assertEqual(user_id, 'u-1756bbba7e2a350')
-
-    def test_get_session_token(self):
-        session_token = self.login_response.get_session_token()
-        self.assertEqual(session_token, 'r:3cde15b3280d1f55d6cf3c4733f773ae')
 
 class WattbikeFramePlotMethodsTest(TestCase):
     def setUp(self):
@@ -109,9 +21,11 @@ class WattbikeFramePlotMethodsTest(TestCase):
             'force': '130.7665',
             'balance': '58.5158',
             'heartrate': '100.0000',
-            'cadence': '52.1739'}]
+            'cadence': '52.1739',
+            'user_id': 'u-1756bbba7e2a350'
+        }]
         wdf = models.WattbikeDataFrame(self.data * 60)
-        wdf.process()
+        wdf._process(wdf)
         self.wfpm = models.WattbikeFramePlotMethods(wdf)
 
     def test_polar(self):
@@ -143,7 +57,9 @@ class WattbikeDataFrameTest(TestCase):
             'force': '130.7665',
             'balance': '58.5158',
             'heartrate': '100.0000',
-            'cadence': '52.1739'},
+            'cadence': '52.1739',
+            'user_id': 'u-1756bbba7e2a350'
+            },
             {'speed': '30.7822',
             'distance': '9.8332',
             'power': '121.4584',
@@ -151,10 +67,13 @@ class WattbikeDataFrameTest(TestCase):
             'force': '130.7665',
             'balance': '58.5158',
             'heartrate': '100.0000',
-            'cadence': '52.1739'}
+            'cadence': '52.1739',
+            'user_id': 'u-1756bbba7e2a350'
+            }
             ]
         self.wdf = models.WattbikeDataFrame(self.data)
-        self.wdf.columns_to_numeric()
+        self.wdf = self.wdf._process(self.wdf)
+        # self.wdf._columns_to_numeric()
 
     def test_init(self):
         wdf = models.WattbikeDataFrame(self.data)
@@ -172,18 +91,14 @@ class WattbikeDataFrameTest(TestCase):
         self.assertEqual(wdf.polar_cnt.dtype.name, 'float64')
         self.assertEqual(wdf.polar_force.dtype.name, 'object')
 
-        wdf_2 = wdf.columns_to_numeric()
+        wdf_2 = wdf._columns_to_numeric()
         self.assertEqual(wdf.balance.dtype.name, 'float64')
         self.assertEqual(wdf.polar_cnt.dtype.name, 'float64')
         self.assertEqual(wdf.polar_force.dtype.name, 'object')
         self.assertIsNotNone(wdf_2)
 
-    def test_plot_polar_view(self):
-        with self.assertRaises(NotImplementedError):
-            self.wdf.plot_polar_view()
-
     def test_add_polar_forces(self):
-        wdf_2 = self.wdf.add_polar_forces()
+        wdf_2 = self.wdf._add_polar_forces()
         self.assertIsNotNone(wdf_2)
         self.assertTrue('_0' in self.wdf.columns)
         self.assertTrue('_359' in self.wdf.columns)
@@ -191,48 +106,49 @@ class WattbikeDataFrameTest(TestCase):
         self.assertEqual(self.wdf.loc[0, '_0'], 0.659439450026441)
 
     def test_add_polar_forces_columns_already_exist(self):
-        self.wdf.add_polar_forces()
-        wdf_2 = self.wdf.add_polar_forces()
+        self.wdf._add_polar_forces()
+        wdf_2 = self.wdf._add_polar_forces()
         self.assertTrue('_0' in self.wdf.columns)
         self.assertTrue('_359' in self.wdf.columns)
         self.assertIsInstance(self.wdf.loc[0, '_0'], float)
         self.assertEqual(self.wdf.loc[0, '_0'], 0.659439450026441)
 
     def test_min_max_angles(self):
-        self.wdf.add_polar_forces()
-        self.assertTrue('left_max_angle' not in self.wdf.columns)
-        self.wdf.add_min_max_angles()
+        wdf = models.WattbikeDataFrame(self.data * 60)
+        wdf._add_polar_forces()
+        self.assertFalse('left_max_angle' in wdf.columns)
+        wdf._add_min_max_angles()
 
-        self.assertTrue('left_max_angle' in self.wdf.columns)
-        self.assertTrue('left_min_angle' in self.wdf.columns)
-        self.assertTrue('right_max_angle' in self.wdf.columns)
-        self.assertTrue('right_min_angle' in self.wdf.columns)
+        self.assertTrue('left_max_angle' in wdf.columns)
+        self.assertTrue('left_min_angle' in wdf.columns)
+        self.assertTrue('right_max_angle' in wdf.columns)
+        self.assertTrue('right_min_angle' in wdf.columns)
 
-        self.assertEqual(self.wdf.iloc[0].left_max_angle, 129.0)
-        self.assertEqual(self.wdf.iloc[0].left_min_angle, 22.0)
-        self.assertEqual(self.wdf.iloc[0].right_max_angle, 121.0)
-        self.assertEqual(self.wdf.iloc[0].right_min_angle, 30.0)
+        self.assertEqual(wdf.iloc[0].left_max_angle, 129.0)
+        self.assertEqual(wdf.iloc[0].left_min_angle, 22.0)
+        self.assertEqual(wdf.iloc[0].right_max_angle, 121.0)
+        self.assertEqual(wdf.iloc[0].right_min_angle, 30.0)
 
-        self.assertTrue(np.isnan(self.wdf.iloc[1].left_max_angle))
-        self.assertTrue(np.isnan(self.wdf.iloc[1].left_min_angle))
-        self.assertTrue(np.isnan(self.wdf.iloc[1].right_max_angle))
-        self.assertTrue(np.isnan(self.wdf.iloc[1].right_min_angle))
+        self.assertTrue(np.isnan(wdf.iloc[1].left_max_angle))
+        self.assertTrue(np.isnan(wdf.iloc[1].left_min_angle))
+        self.assertTrue(np.isnan(wdf.iloc[1].right_max_angle))
+        self.assertTrue(np.isnan(wdf.iloc[1].right_min_angle))
 
     def test_min_max_angles_columns_already_exist(self):
-        self.wdf.add_polar_forces()
-        self.wdf.add_min_max_angles()
-        self.wdf.add_min_max_angles()
+        self.wdf._add_polar_forces()
+        self.wdf._add_min_max_angles()
+        self.wdf._add_min_max_angles()
 
         self.assertEqual(self.wdf.iloc[0].left_max_angle, 129.0)
         self.assertTrue(np.isnan(self.wdf.iloc[1].left_max_angle))
 
     def test_min_max_angles_without_polar_forces(self):
-        self.wdf.add_min_max_angles()
+        self.wdf._add_min_max_angles()
 
-        self.assertTrue(np.isnan(self.wdf.iloc[0].left_max_angle))
-        self.assertTrue(np.isnan(self.wdf.iloc[0].left_min_angle))
-        self.assertTrue(np.isnan(self.wdf.iloc[0].right_max_angle))
-        self.assertTrue(np.isnan(self.wdf.iloc[0].right_min_angle))
+        self.assertFalse(np.isnan(self.wdf.iloc[0].left_max_angle))
+        self.assertFalse(np.isnan(self.wdf.iloc[0].left_min_angle))
+        self.assertFalse(np.isnan(self.wdf.iloc[0].right_max_angle))
+        self.assertFalse(np.isnan(self.wdf.iloc[0].right_min_angle))
 
         self.assertTrue(np.isnan(self.wdf.iloc[1].left_max_angle))
         self.assertTrue(np.isnan(self.wdf.iloc[1].left_min_angle))
@@ -240,7 +156,7 @@ class WattbikeDataFrameTest(TestCase):
         self.assertTrue(np.isnan(self.wdf.iloc[1].right_min_angle))
 
     def test_polar_plot(self):
-        self.wdf.add_polar_forces()
+        self.wdf._add_polar_forces()
         ax = self.wdf.plot.polar()
         self.assertTrue(ax.has_data)
 
@@ -251,7 +167,7 @@ class WattbikeDataFrameTest(TestCase):
         self.assertTrue('_0' not in wdf.columns)
         self.assertTrue('left_max_angle' not in wdf.columns)
 
-        wdf.process()
+        wdf = wdf._process(wdf)
 
         self.assertTrue(isinstance(wdf.iloc[0].power, float))
         self.assertTrue('_0' in wdf.columns)
@@ -266,21 +182,114 @@ class WattbikeDataFrameTest(TestCase):
         wdf.reset_index
 
         wdf['session_id'] = [f'session_{i}' for i in range(4)] * 3
-        wdf['user_id'] = [f'user_{i}' for i in range(2)] * 6
+        wdf['user_id'] = ['u-1756bbba7e2a350', 'u-1656bbbb46272a5'] * 6
         return wdf
 
-    def test_reduce_by_session(self):
+    def test_average_by_session(self):
         wdf = self._create_multi_user_session_wdf()
-        reduced_wdf = wdf.reduce_by_session()
+        averaged_wdf = wdf.average_by_session()
 
-        self.assertEqual(len(reduced_wdf), 4)
-        self.assertEqual(len(set(reduced_wdf.session_id)), 4)
-        self.assertEqual(len(set(reduced_wdf.user_id)), 2)
+        self.assertEqual(len(averaged_wdf), 4)
+        self.assertEqual(len(set(averaged_wdf.session_id)), 4)
+        self.assertEqual(len(set(averaged_wdf.user_id)), 2)
 
-    def test_reduce_by_user(self):
+    def test_average_by_user(self):
         wdf = self._create_multi_user_session_wdf()
-        reduced_wdf = wdf.reduce_by_user()
+        averaged_wdf = wdf.average_by_user()
 
-        self.assertEqual(len(reduced_wdf), 2)
-        self.assertEqual(len(set(reduced_wdf.user_id)), 2)
-        self.assertTrue('session_id' not in reduced_wdf.columns)
+        self.assertEqual(len(averaged_wdf), 2)
+        self.assertEqual(len(set(averaged_wdf.user_id)), 2)
+        self.assertTrue('session_id' not in averaged_wdf.columns)
+
+    def test_enrich_with_athlete_performance_state(self):
+        wdf = self._create_multi_user_session_wdf()
+        wdf = wdf._enrich_with_athlete_performance_state(wdf)
+        self.assertEqual(wdf.iloc[0].percentage_of_ftp, 121.4584/323)
+        self.assertEqual(wdf.iloc[1].percentage_of_ftp, 121.4584/321)
+        self.assertEqual(wdf.iloc[0].percentage_of_mmp, 121.4584/453)
+        self.assertEqual(wdf.iloc[1].percentage_of_mmp, 121.4584/450)
+        self.assertEqual(wdf.iloc[0].percentage_of_mhr, 100.0/200)
+        self.assertEqual(wdf.iloc[1].percentage_of_mhr, 100.0/195)
+
+    def test_enrich_with_athlete_performance_state_without_heartrate(self):
+        wdf = self._create_multi_user_session_wdf()
+        del wdf['heartrate']
+        wdf = wdf._enrich_with_athlete_performance_state(wdf)
+        self.assertTrue(np.isnan(wdf.iloc[0].percentage_of_mhr))
+        self.assertTrue(np.isnan(wdf.iloc[1].percentage_of_mhr))
+
+    @mock.patch('wblib.client.WattbikeHubClient.get_session')
+    @mock.patch('wblib.models.WattbikeDataFrame._raw_session_to_wdf')
+    def test_load(self, mock_raw, mock_get_session):
+        mock_get_session.return_value = ('session_data', 'ride_session')
+        mock_raw.return_value = models.WattbikeDataFrame([1])
+        wdf = models.WattbikeDataFrame()
+        wdf = wdf.load('i6LY60PUyH')
+        mock_get_session.assert_called_once_with('i6LY60PUyH')
+        mock_raw.assert_called_once_with('session_data', 'ride_session')
+    
+    @mock.patch('wblib.client.WattbikeHubClient.get_session')
+    @mock.patch('wblib.models.WattbikeDataFrame._raw_session_to_wdf')
+    def test_load_multiple(self, mock_raw, mock_get_session):
+        mock_get_session.return_value = ('session_data', 'ride_session')
+        mock_raw.return_value = models.WattbikeDataFrame([1])
+        wdf = models.WattbikeDataFrame()
+        wdf = wdf.load(['i6LY60PUyH', '8lQVvY2bEG'])
+        self.assertEqual(mock_get_session.call_count, 2)
+        self.assertEqual(mock_raw.call_count, 2)
+
+    @mock.patch('wblib.client.WattbikeHubClient.get_sessions_for_user')
+    @mock.patch('wblib.models.WattbikeDataFrame._raw_session_to_wdf')
+    def test_load_for_user(self, mock_raw, mock_get_sessions):
+        mock_get_sessions.return_value = [('session_data', 'ride_session')]
+        mock_raw.return_value = models.WattbikeDataFrame([1])
+        wdf = models.WattbikeDataFrame()
+        self.assertEqual(len(wdf), 0)
+        wdf = wdf.load_for_user('u-1756bbba7e2a350')
+        mock_get_sessions.assert_called_once_with(
+            user_id='u-1756bbba7e2a350',
+            after=None,
+            before=None
+        )
+        mock_raw.assert_called_once_with('session_data', 'ride_session')
+        self.assertEqual(len(wdf), 1)
+
+    @mock.patch('wblib.client.WattbikeHubClient.get_sessions_for_user')
+    @mock.patch('wblib.models.WattbikeDataFrame._raw_session_to_wdf')
+    def test_load_for_user_multiple(self, mock_raw, mock_get_sessions):
+        mock_get_sessions.return_value = [('session_data', 'ride_session')]
+        mock_raw.return_value = models.WattbikeDataFrame([1])
+        wdf = models.WattbikeDataFrame()
+        wdf = wdf.load_for_user(['u-1756bbba7e2a350'])
+        mock_get_sessions.assert_called_once_with(
+            user_id='u-1756bbba7e2a350',
+            after=None,
+            before=None
+        )
+        mock_raw.assert_called_once_with('session_data', 'ride_session')
+
+    @mock.patch('wblib.models.WattbikeDataFrame._process')
+    def test_raw_session_to_wdf(self, mock_process):
+        session_data = dict(
+            laps=[dict(
+                data=[dict(
+                    heartrate=123,
+                    power=234,
+                    cadence=345,
+                    time=456
+                )]
+            )]
+        )
+        ride_session = mock.Mock()
+        ride_session.get_user_id = lambda: 'user_id'
+        ride_session.get_session_id = lambda: 'session_id'
+
+        wdf = models.WattbikeDataFrame()
+        wdf = wdf._raw_session_to_wdf(session_data, ride_session)
+
+        self.assertEqual(wdf.heartrate.iloc[0], 123)
+        self.assertEqual(wdf.power.iloc[0], 234)
+        self.assertEqual(wdf.cadence.iloc[0], 345)
+        self.assertEqual(wdf.time.iloc[0], 456)
+        self.assertEqual(wdf.session_id.iloc[0], 'session_id')
+        self.assertEqual(wdf.user_id.iloc[0], 'user_id')
