@@ -9,9 +9,9 @@ git clone git@github.com:AartGoossens/wblib.git
 ```
 
 ## Example usage
-Start with importing the WattbikeHubClient:
+Start with importing WattbikeDataFrame:
 ```python
-from wblib.client import WattbikeHubClient
+from wblib.models import WattbikeDataFrame
 ```
 
 If you are running this code from a Jupyter Notebook, run this code to show the plots inline:
@@ -21,11 +21,11 @@ If you are running this code from a Jupyter Notebook, run this code to show the 
 
 Then finally, these lines are all you need to get all data from a Wattbike session:
 ```python
-client = WattbikeHubClient()
-wdf = client.get_session_dataframe('https://hub.wattbike.com/session/LYPWXEjF9B')
+wdf = WattbikeDataFrame().load('LYPWXEjF9B')
 ```
+...where `LYPWXEjF9B` is the session id from a Wattbike session that your can retrieve from the session page on the Wattbike Hub.
 
-`wdf` is a WattbikeDataFrame, a sub class of [Pandas](http://pandas.pydata.org/) `DataFrame` so all features of a `DataFrame` are available. In addition, some Wattbike specific features are added.
+`wdf` is a WattbikeDataFrame, a sub class of [Pandas](http://pandas.pydata.org/) `DataFrame` so all features of a Pandas `DataFrame` are available. In addition, some Wattbike specific features are added.
 
 To plot the average polar plot of the session:
 ```python
@@ -68,6 +68,22 @@ It is also possible to do analyses on asubset of the data, again in a Pandas-lik
 wdf.loc[wdf.power > 400].plot.polar()
 ```
 ![Image of polar plot over 400 Watt](docs/resources/polar_plot_gt_400.png)
+
+To retrieve all workouts from an in a certain date range (depending on the number of workouts this can take a while):
+```python
+import datetime
+wdf = WattbikeDataFrame().load_for_user(user_id='u-1756bbba7e2a350', after=datetime.datetime(2017, 1, 1), before=datetime.datetime(2017, 3, 1))
+```
+
+It is also possible to add an extra session to an already existing wdf by using the aforementioned `load` method:
+```python
+wdf = wdf.load('Gbf8NgdcjH')
+```
+
+If you are working with a WattbikeDataFrame with multiple sessions you can make your dataset more manageable by averaging all the data per session:
+```python
+wdf.average_by_session()
+```
 
 ## License
 This library is licensed under a MIT license. See [LICENSE](LICENSE).
