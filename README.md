@@ -3,7 +3,11 @@
 Wblib offers a set of tools to work with Wattbike data. Wattbike session data can be downloaded directly from the Wattbike Hub.
 
 ## Installation
-In the future it will be possible to install this library via `pip`. For now you need to clone this repository to be able to use it:
+The easiest way to install wblib is via `pip`:
+```
+pip install wblib
+```
+Otherwise you can clone this repository:
 ```
 git clone git@github.com:AartGoossens/wblib.git
 ```
