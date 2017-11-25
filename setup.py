@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name = 'wblib',
     packages = ['wblib'],
-    version = '0.1.0',
+    version = '0.5.0',
     description = 'Wattbike Hub Workout Analysis',
     author='Aart Goossens',
     author_email='aart@goossens.me',
