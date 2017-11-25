@@ -20,7 +20,7 @@ class WattbikeHubClientTest(TestCase):
     @custom_vcr.use_cassette()
     def test_login(self):
         self.assertIsNone(self.client.session_token)
-        self.client.login()
+        self.client.login(params.WATTBIKE_HUB_USERNAME, params.WATTBIKE_HUB_PASSWORD)
 
         self.assertRegex(self.client.session_token, 'r:[a-z0-9]{32}')
         self.assertRegex(self.client.user_id, 'u-[a-z0-9]{15}')
@@ -31,7 +31,7 @@ class WattbikeHubClientTest(TestCase):
         params.WATTBIKE_HUB_PASSWORD = 'incorrect_password'
 
         with self.assertRaises(requests.exceptions.HTTPError):
-            self.client.login()
+            self.client.login('wrong_username', 'wrong_password')
             self.assertIsNone(self.client.session_token)
 
         params.WATTBIKE_HUB_PASSWORD = correct_password
@@ -53,7 +53,7 @@ class WattbikeHubClientTest(TestCase):
 
     @custom_vcr.use_cassette()
     def test_ride_session_call_logged_in(self):
-        self.client.login()
+        self.client.login(params.WATTBIKE_HUB_USERNAME, params.WATTBIKE_HUB_PASSWORD)
         payload = {
             'where': {
                 'objectId': '2yBuOvd92C'}}

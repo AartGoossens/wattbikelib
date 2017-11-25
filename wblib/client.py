@@ -4,8 +4,6 @@ import re
 
 import requests
 
-import params
-
 from .constants import (WATTBIKE_HUB_LOGIN_URL, WATTBIKE_HUB_RIDESESSION_URL,
                         WATTBIKE_HUB_USER_URL)
 from .data_models import (LoginResponseModel, PerformanceStateModel,
@@ -53,11 +51,11 @@ class WattbikeHubClient:
         response.raise_for_status()
         return response.json()
 
-    def login(self):
+    def login(self, username, password):
         self.session_token = None
         payload = {
-            'username': params.WATTBIKE_HUB_USERNAME,
-            'password': params.WATTBIKE_HUB_PASSWORD}
+            'username': username,
+            'password': password}
 
         data = self._post_request(
             url=WATTBIKE_HUB_LOGIN_URL,
