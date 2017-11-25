@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from pandas.core.base import AccessorProperty
+from pandas.core.accessor import AccessorProperty
 import pandas.plotting._core as gfx
 
 from .client import WattbikeHubClient
