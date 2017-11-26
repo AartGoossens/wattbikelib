@@ -12,27 +12,27 @@ class WattbikeFramePlotMethods(gfx.FramePlotMethods):
     polar_angles = np.arange(90, 451) / (180 / np.pi)
     polar_force_columns = polar_force_column_labels()
 
-    def _plot_single_polar(self, ax, polar_forces, mean):
-        if mean:
+    def _plot_single_polar(self, ax, polar_forces, mean, *args, **kwargs):
+        if 'linewidth' in kwargs:
+            linewidth = kwargs.pop('linewidth')
+        elif mean:
             linewidth = 3
-            color = '#5480C7'
         else:
             linewidth = 0.5
-            color = '#BDBDBD'
 
-        ax.plot(self.polar_angles, polar_forces, color, linewidth=linewidth)
+        ax.plot(self.polar_angles, polar_forces, linewidth=linewidth, *args, **kwargs)
 
-    def polar(self, full=False, mean=True):
+    def polar(self, full=False, mean=True, *args, **kwargs):
         ax = plt.subplot(111, projection='polar')
 
         if full:
             for i in range(0, len(self._data) - 50, 50):
                 forces = self._data.iloc[i:i + 50, self._data.columns.get_indexer(self.polar_force_columns)].mean()
-                self._plot_single_polar(ax, forces, mean=False)
+                self._plot_single_polar(ax, forces, mean=False, *args, **kwargs)
 
         if mean:
             forces = self._data[self.polar_force_columns].mean()
-            self._plot_single_polar(ax, forces, mean=True)
+            self._plot_single_polar(ax, forces, mean=True, *args, **kwargs)
 
         xticks_num = 8
         xticks = np.arange(0, xticks_num, 2 * np.pi / xticks_num)
