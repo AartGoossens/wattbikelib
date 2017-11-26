@@ -36,6 +36,14 @@ class WattbikeFramePlotMethodsTest(TestCase):
         ax = self.wfpm.polar(full=True)
         self.assertTrue(ax.has_data)
 
+    def test_polar_propagate_plot_arguments(self):
+        ax = self.wfpm.polar(color='r')
+        self.assertTrue(ax.has_data)
+
+    def test_polar_linewidth(self):
+        ax = self.wfpm.polar(linewidth=1)
+        self.assertTrue(ax.has_data)
+
     def test_polar_full_without_mean(self):
         ax = self.wfpm.polar(full=True, mean=False)
         self.assertTrue(ax.has_data)
