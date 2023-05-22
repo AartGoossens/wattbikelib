@@ -3,5 +3,5 @@ isort==4.2.5
 matplotlib==2.0.0
 notebook==4.4.1
 pandas==0.21.0
-requests==2.13.0
+requests==2.31.0
 vcrpy==1.10.5
